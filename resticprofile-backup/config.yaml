@@ -1,0 +1,42 @@
+name: Resticprofile Backup
+version: "0.1.0"
+slug: resticprofile-backup
+description: Allows resticprofile configs for custom backups
+url: "https://github.com/danez/addon-resticprofile-backup"
+hassio_api: true
+hassio_role: default
+homeassistant_api: false
+fuull_access: false
+privileged:
+  - SYS_ADMIN
+  - DAC_READ_SEARCH
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+init: false
+map:
+  - type: addon_config
+    read_only: False
+    path: /config
+  - type: addons
+  - type: all_addon_configs
+    path: /addon_configs
+  - type: backup
+  - type: data
+  - type: homeassistant_config
+  - type: media
+  - type: share
+  - type: ssl
+options:
+  smb_shares: []
+schema:
+  smb_shares:
+    - host: "str"
+      local: "str"
+      username: "str?"
+      password: "str?"
+      smb_version: "str?"
+#image: "local/addon-resticprofile-backup-{arch}"

@@ -1,0 +1,17 @@
+build_from:
+  aarch64: "ghcr.io/home-assistant/aarch64-base:3.22"
+  amd64: "ghcr.io/home-assistant/amd64-base:3.22"
+  armhf: "ghcr.io/home-assistant/armhf-base:3.22"
+  armv7: "ghcr.io/home-assistant/armv7-base:3.22"
+  i386: "ghcr.io/home-assistant/i386-base:3.22"
+labels:
+  org.opencontainers.image.title: "Home Assistant Add-on: Resticprofile Backup"
+  org.opencontainers.image.description:
+    "Home Assistant Add-on that can run scheduled resticprofile Backups."
+  org.opencontainers.image.source: "https://github.com/danez/addon-resticprofile-backup"
+  org.opencontainers.image.licenses: "Apache License 2.0"
+args:
+  BUILD_RESTIC_VERSION: "0.18.0"
+  BUILD_RESTICPROFILE_VERSION: "0.31.0"
+  BUILD_TEMPIO_VERSION: "2021.09.0"
+  BUILD_RCLONE_VERSION: "1.70.1"
