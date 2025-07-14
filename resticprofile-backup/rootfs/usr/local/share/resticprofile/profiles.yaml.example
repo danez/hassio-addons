@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config.json
+
+version: "1"
+
+default:
+  repository: "local:/my-nas"
+  password-file: "password.txt"
+
+  backup:
+    verbose: true
+    schedule: 'daily'
+    source:
+      - "/share"
+      - "/media"

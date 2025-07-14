@@ -1,0 +1,4 @@
+configuration:
+  smb_shares:
+    name: SMB-Freigaben
+    description: Konfiguration der SMB-Freigaben, die verbunden werden sollen.
