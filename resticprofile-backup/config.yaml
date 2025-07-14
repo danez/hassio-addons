@@ -36,4 +36,4 @@ schema:
       username: "str?"
       password: "str?"
       smb_version: "str?"
-image: "ghcr.io/home-assistant/{arch}-addon-resticprofile-backup"
+image: "ghcr.io/danez/{arch}-addon-resticprofile-backup"
