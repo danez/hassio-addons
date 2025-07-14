@@ -9,7 +9,7 @@ labels:
   org.opencontainers.image.description:
     "Home Assistant Add-on that can run scheduled resticprofile Backups."
   org.opencontainers.image.source: "https://github.com/danez/addon-resticprofile-backup"
-  org.opencontainers.image.licenses: "Apache License 2.0"
+  org.opencontainers.image.licenses: "MIT"
 args:
   BUILD_RESTIC_VERSION: "0.18.0"
   BUILD_RESTICPROFILE_VERSION: "0.31.0"
