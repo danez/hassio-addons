@@ -13,11 +13,11 @@ resticprofile -c "$PROFILES" profiles --quiet | \
   while read -r profile; do
     bashio::log.info "Initializing profile: $profile"
     if ! resticprofile -c "$PROFILES" "${profile}.stats" > /dev/null 2>&1; then
-      resticprofile -c "$PROFILES" "${profile}.init"
+      TZ="Etc/UTC" resticprofile -c "$PROFILES" "${profile}.init"
     else
       bashio::log.info "Profile '$profile' already initialized, skipping."
     fi
 done
 
 bashio::log.info "Writing cron schedules"
-resticprofile -c "$PROFILES" schedule --all
+TZ="Etc/UTC" resticprofile -c "$PROFILES" schedule --all

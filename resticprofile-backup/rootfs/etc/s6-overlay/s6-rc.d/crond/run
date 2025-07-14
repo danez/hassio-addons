@@ -2,4 +2,4 @@
 
 bashio::log.info "Starting cron daemon"
 
-crond -f
+TZ="Etc/UTC" crond -f

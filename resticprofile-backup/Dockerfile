@@ -11,6 +11,7 @@ RUN apk add --no-cache \
     talloc=2.4.2-r1 \
     libwbclient=4.21.4-r4 \
     cifs-utils=7.3-r0 \
+    # yq
     yq-go=4.46.1-r0 \
     && yq --version
 
