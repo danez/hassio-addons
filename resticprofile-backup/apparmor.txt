@@ -1,10 +1,14 @@
 #include <tunables/global>
 
-profile basesystem flags=(attach_disconnected,mediate_deleted,complain) {
+profile resticprofile flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities
+  capability sys_admin,
+  capability dac_read_search,
   file,
+  mount,
+  umount,
   signal (send) set=(kill,term,int,hup,cont),
 
   # S6-Overlay
@@ -28,35 +32,27 @@ profile basesystem flags=(attach_disconnected,mediate_deleted,complain) {
   # Access to options.json and other files within your addon
   /data/** rw,
 
-  # Start new profile for service
-  /usr/bin/resticprofile cx -> resticprofile,
+  # Access to the config folder
+  /config/** rw,
 
-  profile resticprofile flags=(attach_disconnected,mediate_deleted,complain) {
-    #include <abstractions/base>
+  # Access to mapped volumes specified in config.json
+  /addon_configs/** rw,
+  /addons/** rw,
+  /backup/** rw,
+  /homeassistant/** rw,
+  /media/** rw,
+  /share/** rw,
+  /ssl/** rw,
 
-    # Receive signals from S6-Overlay
-    signal (receive) peer=*_basesystem,
-
-    # Access to options.json and other files within your addon
-    /data/** rw,
-
-    # Access to mapped volumes specified in config.json
-    /share/** rw,
-
-    # Access required for service functionality
-    # Note: List was built by doing the following:
-    # 1. Add what is obviously needed based on what is in the script
-    # 2. Add `complain` as a flag to this profile temporarily and run the addon
-    # 3. Review the audit log with `journalctl _TRANSPORT="audit" -g 'apparmor="ALLOWED"'` and add other access as needed
-    # Remember to remove the `complain` flag when you are done
-    /usr/local/bin/cifs-mount.sh r,
-    /usr/local/bin/init.sh r,
-    /usr/local/bin/resticprofile-schedule r,
-    /usr/bin/resticprofile r,
-    /usr/bin/restic r,
-    /usr/bin/rclone r,
-    /bin/bash rix,
-    /bin/echo ix,
-    /dev/tty rw,
-  }
+  # Access required for service functionality
+  /usr/local/share/resticprofile/pprofiles.yaml.example r,
+  /usr/local/bin/cifs-mount.sh r,
+  /usr/local/bin/init.sh r,
+  /usr/local/bin/resticprofile-schedule.sh r,
+  /usr/bin/resticprofile r,
+  /usr/bin/restic r,
+  /usr/bin/rclone r,
+  /bin/bash rix,
+  /bin/echo ix,
+  /dev/tty rw,
 }
