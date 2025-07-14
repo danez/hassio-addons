@@ -20,10 +20,15 @@ Assistant backup.
 
 After the initial start, copy the contents of `profiles.yaml.example` to a new
 file named `profiles.yaml` and modify to your own needs. Alternatively, you can
-create your own configuration from scratch.
+create your own configuration from scratch. After every change to the config
+file, the add-on **needs to be restarted** in order to pick up the new
+configuration!
 
 For details on creating or modifying the configuration, refer to the
 [resticprofile documentation](https://creativeprojects.github.io/resticprofile/configuration/index.html).
+
+For every repository added in the `profiles.yaml` file, the add-on will also
+check if it is initialized and automatically call `restic init` if not.
 
 The following Home Assistant folders are mounted (read-only) inside the add-on
 container:

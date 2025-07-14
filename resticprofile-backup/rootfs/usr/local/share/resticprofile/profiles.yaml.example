@@ -13,6 +13,7 @@ default:
       - "/share"
       - "/media"
     retention:
+      before-backup: false
       after-backup: true
       keep-last: 3
       prune: true
