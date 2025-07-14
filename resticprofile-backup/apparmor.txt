@@ -4,6 +4,7 @@ profile resticprofile flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities
+  capability setgid,
   capability sys_admin,
   capability dac_read_search,
   file,
