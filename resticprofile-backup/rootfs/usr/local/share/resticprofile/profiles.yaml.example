@@ -3,7 +3,7 @@
 version: "1"
 
 default:
-  repository: "local:/my-nas"
+  repository: "local:/mnt/mynas"
   password-file: "password.txt"
 
   backup:
@@ -12,3 +12,7 @@ default:
     source:
       - "/share"
       - "/media"
+    retention:
+      after-backup: true
+      keep-last: 3
+      prune: true
