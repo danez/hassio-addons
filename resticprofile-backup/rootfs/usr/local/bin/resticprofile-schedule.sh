@@ -12,7 +12,7 @@ resticprofile -c "$PROFILES" profiles --quiet | \
   awk '/^[[:space:]]+[a-zA-Z0-9_-]+:/ { gsub(":", "", $1); print $1 }' | \
   while read -r profile; do
     bashio::log.info "Initializing profile: $profile"
-    if ! resticprofile -c "$PROFILES" "${profile}.stats" > /dev/null 2>&1; then
+    if ! resticprofile -c "$PROFILES" "${profile}.snapshots" > /dev/null 2>&1; then
       resticprofile -c "$PROFILES" "${profile}.init"
     else
       bashio::log.info "Profile '$profile' already initialized, skipping."

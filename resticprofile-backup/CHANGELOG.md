@@ -1,3 +1,7 @@
+## 1.0.1
+
+- Speed up start, by using restic's snapshot command instead of stats
+
 ## 1.0.0
 
 - Add code notary support
