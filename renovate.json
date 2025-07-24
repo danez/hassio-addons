@@ -1,6 +1,53 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  "extends": ["config:recommended"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update apk packages in Dockerfiles",
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
+      "matchStrings": [
+        "\\s{4}(?<packageName>\\S+?)=(?<currentValue>.+?)\\s\\\\n"
+      ],
+      "datasourceTemplate": "repology",
+      "depNameTemplate": "alpine_3_22/{{{depName}}}",
+      "versioningTemplate": "loose"
+    },
+    {
+      "customType": "regex",
+      "description": "Update restic",
+      "managerFilePatterns": ["//build.yaml$/"],
+      "matchStrings": [
+        "BUILD_RESTIC_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "restic",
+      "packageNameTemplate": "restic/restic",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Update resticprofile",
+      "managerFilePatterns": ["//build.yaml$/"],
+      "matchStrings": [
+        "BUILD_RESTICPROFILE_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "resticprofile",
+      "packageNameTemplate": "creativeprojects/resticprofile",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Update rclone",
+      "managerFilePatterns": ["//build.yaml$/"],
+      "matchStrings": [
+        "BUILD_RCLONE_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "rclone",
+      "packageNameTemplate": "rclone/rclone",
+      "versioningTemplate": "semver"
+    }
   ]
 }
