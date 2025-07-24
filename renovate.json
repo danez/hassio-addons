@@ -7,10 +7,10 @@
       "description": "Update apk packages in Dockerfiles",
       "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "matchStrings": [
-        "\\s{4}(?<packageName>\\S+?)=(?<currentValue>.+?)\\s\\\\\\n"
+        "\\s{4}(?<depName>\\S+?)=(?<currentValue>.+?)\\s\\\\\\n"
       ],
       "datasourceTemplate": "repology",
-      "depNameTemplate": "alpine_3_22/{{{depName}}}",
+      "packageNameTemplate": "alpine_3_22/{{{depName}}}",
       "versioningTemplate": "loose"
     },
     {
