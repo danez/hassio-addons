@@ -1,6 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "matchFileNames": ["**/Dockerfile", "**/build.yaml"],
+      "extends": [":semanticCommitTypeAll(fix)"]
+    }
+  ],
   "customManagers": [
     {
       "customType": "regex",
