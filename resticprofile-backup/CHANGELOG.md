@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Include postgres-client package in the container
+
 ## 1.0.1
 
 - Speed up start, by using restic's snapshot command instead of stats
