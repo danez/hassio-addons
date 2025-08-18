@@ -14,7 +14,7 @@ RUN apk add --no-cache \
     # pg-client
     postgresql-common=1.2-r1 \
     lz4-libs=1.10.0-r0 \
-    libpq=17.5-r0 \
+    libpq=17.6-r0 \
     ncurses-terminfo-base=6.5_p20250503-r0 \
     libncursesw=6.5_p20250503-r0 \
     readline=8.2.13-r1 \
