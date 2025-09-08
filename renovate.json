@@ -5,6 +5,10 @@
     {
       "matchFileNames": ["**/Dockerfile", "**/build.yaml"],
       "extends": [":semanticCommitTypeAll(fix)"]
+    },
+    {
+      "matchDepNames": ["libpq", "postgresql**"],
+      "groupName": "postgresql"
     }
   ],
   "customManagers": [
