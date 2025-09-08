@@ -12,7 +12,6 @@ RUN apk add --no-cache \
     libwbclient=4.21.4-r4 \
     cifs-utils=7.3-r0 \
     # pg-client
-    postgresql-common=1.2-r1 \
     lz4-libs=1.10.0-r0 \
     libpq=17.5-r0 \
     ncurses-terminfo-base=6.5_p20250503-r0 \
