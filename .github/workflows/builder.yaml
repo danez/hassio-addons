@@ -92,7 +92,6 @@ jobs:
             IMAGE=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f2,3 | sed 's/{arch}/${{ matrix.arch }}/')
             TAGS=$(curl -s -H "Authorization: Bearer ${ENCODED_TOKEN}" \
               https://ghcr.io/v2/${IMAGE}/tags/list)
-            echo "TAGS: $TAGS"
 
             echo "build_arch=true" >> $GITHUB_OUTPUT;
             echo "image=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT;
