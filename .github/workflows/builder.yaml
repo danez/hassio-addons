@@ -89,7 +89,7 @@ jobs:
             echo "build_arch=false" >> $GITHUB_OUTPUT;
           elif [[ "${{ steps.info.outputs.architectures }}" =~ ${{ matrix.arch }} ]]; then
             ENCODED_TOKEN=$(echo -n "${{ secrets.GITHUB_TOKEN }}" | base64)
-            IMAGE=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f2,3 | sed 's/{arch}/${{ matrix.arch }}/')"
+            IMAGE=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f2,3 | sed 's/{arch}/${{ matrix.arch }}/')
             TAGS=$(curl -s -H "Authorization: Bearer ${ENCODED_TOKEN}" \
               https://ghcr.io/v2/${IMAGE}/tags/list)
             echo "TAGS: $TAGS"
