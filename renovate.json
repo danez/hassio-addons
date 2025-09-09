@@ -58,6 +58,16 @@
       "depNameTemplate": "rclone",
       "packageNameTemplate": "rclone/rclone",
       "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Update yq",
+      "managerFilePatterns": ["//build.yaml$/"],
+      "matchStrings": ["BUILD_YQ_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "yq",
+      "packageNameTemplate": "mikefarah/yq",
+      "versioningTemplate": "semver"
     }
   ]
 }
