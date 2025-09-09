@@ -89,7 +89,7 @@ jobs:
             echo "build_arch=false" >> $GITHUB_OUTPUT;
           elif [[ "${{ steps.info.outputs.architectures }}" =~ ${{ matrix.arch }} ]]; then
             ENCODED_TOKEN=$(echo -n "${{ secrets.GITHUB_TOKEN }}" | base64)
-            IMAGE=$(echo "${{ steps.info.outputs.image }}" | cut -d'/' -f2,3 | sed 's/{arch}/${{ matrix.arch }}/')"
+            IMAGE=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f2,3 | sed 's/{arch}/${{ matrix.arch }}/')"
             TAGS=$(curl -s -H "Authorization: Bearer ${ENCODED_TOKEN}" \
               https://ghcr.io/v2/${IMAGE}/tags/list)
             echo "TAGS: $TAGS"
@@ -98,14 +98,14 @@ jobs:
             echo "image=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT;
 
             # Check if TAGS is empty or null OR the specific tag does not exist
-            if [[ -z "$TAGS" || "$TAGS" == "null" ]] || ! echo "$TAGS" | jq -e --arg TAG "${{ steps.info.outputs.version }}" '.tags | index($TAG)'; then
-              echo "Image with tag ${{ steps.info.outputs.version }} not found."
+            if [[ -z "$TAGS" || "$TAGS" == "null" ]] || ! echo "$TAGS" | jq -e --arg TAG ${{ steps.info.outputs.version }} '.tags | index($TAG)'; then
+              echo "Image with tag ${{ fromJSON(steps.info.outputs.version) }} not found."
               # Remove dry run and publish image
               if [[ -z "${{ github.head_ref }}" ]] && [[ "${{ github.event_name }}" == "push" ]]; then
                   echo "BUILD_ARGS=" >> $GITHUB_ENV;
               fi
             else
-              echo "Image with tag ${{ steps.info.outputs.version }} already exists."
+              echo "Image with tag ${{ fromJSON(steps.info.outputs.version) }} already exists."
             fi
           else
             echo "${{ matrix.arch }} is not a valid arch for ${{ matrix.addon }}, skipping build";
