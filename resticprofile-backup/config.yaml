@@ -2,7 +2,7 @@ name: Resticprofile Backup
 version: "1.1.0"
 slug: resticprofile-backup
 description: Allows resticprofile configs for custom backups
-url: "https://github.com/danez/addon-resticprofile-backups"
+url: "https://github.com/danez/hassio-addons/tree/main/resticprofile-backup"
 codenotary: notary@tschinder.de
 hassio_api: true
 privileged:
