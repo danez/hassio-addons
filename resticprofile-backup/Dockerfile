@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:18.1.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -18,13 +18,10 @@ RUN apk add --no-cache \
     libncursesw=6.5_p20250503-r0 \
     readline=8.2.13-r1 \
     zstd-libs=1.5.7-r0 \
-    postgresql17-client=17.6-r0 \
-    # yq
-    yq-go=4.46.1-r1 \
-    && yq --version
+    postgresql17-client=17.6-r0
 
 
-ARG BUILD_ARCH BUILD_RESTICPROFILE_VERSION BUILD_RESTIC_VERSION BUILD_RCLONE_VERSION
+ARG BUILD_ARCH BUILD_RESTICPROFILE_VERSION BUILD_RESTIC_VERSION BUILD_RCLONE_VERSION BUILD_YQ_VERSION
 RUN \
     if [ "${BUILD_ARCH}" = "aarch64" ]; then \
     export RESTICPROFILE_ARCH="arm64"; \
@@ -44,24 +41,28 @@ RUN \
     && resticprofile version \
     \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then \
-    export RESTIC_ARCH="arm64"; \
+    export RESTIC_YQ_ARCH="arm64"; \
     elif [ "${BUILD_ARCH}" = "i386" ]; then \
-    export RESTIC_ARCH="386"; \
+    export RESTIC_YQ_ARCH="386"; \
     elif [ "${BUILD_ARCH}" = "armhf" ]; then \
-    export RESTIC_ARCH="arm"; \
+    export RESTIC_YQ_ARCH="arm"; \
     elif [ "${BUILD_ARCH}" = "armv7" ]; then \
-    export RESTIC_ARCH="arm"; \
+    export RESTIC_YQ_ARCH="arm"; \
     else \
-    export RESTIC_ARCH="${BUILD_ARCH}"; \
+    export RESTIC_YQ_ARCH="${BUILD_ARCH}"; \
     fi \
     && wget -qO /tmp/restic.bz2 \
-    "https://github.com/restic/restic/releases/download/v${BUILD_RESTIC_VERSION}/restic_${BUILD_RESTIC_VERSION}_linux_${RESTIC_ARCH}.bz2" \
+    "https://github.com/restic/restic/releases/download/v${BUILD_RESTIC_VERSION}/restic_${BUILD_RESTIC_VERSION}_linux_${RESTIC_YQ_ARCH}.bz2" \
     && bunzip2 -c /tmp/restic.bz2 > /usr/bin/restic \
     && chmod +x /usr/bin/restic \
     && restic version \
-    && rm -rf /tmp/*
-
-RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then \
+    \
+    && wget -qO /usr/bin/yq \
+    "https://github.com/mikefarah/yq/releases/download/v${BUILD_YQ_VERSION}/yq_linux_${RESTIC_YQ_ARCH}" \
+    && chmod +x /usr/bin/yq \
+    && yq --version \
+    \
+    && if [ "${BUILD_ARCH}" = "aarch64" ]; then \
     export RCLONE_ARCH="arm64"; \
     elif [ "${BUILD_ARCH}" = "i386" ]; then \
     export RCLONE_ARCH="386"; \
