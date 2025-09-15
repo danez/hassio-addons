@@ -61,16 +61,6 @@
     },
     {
       "customType": "regex",
-      "description": "Update yq",
-      "managerFilePatterns": ["//build.yaml$/"],
-      "matchStrings": ["BUILD_YQ_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "yq",
-      "packageNameTemplate": "mikefarah/yq",
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
       "description": "Update hassio base image",
       "managerFilePatterns": ["//build.yaml$/"],
       "matchStrings": ["\"ghcr.io/hassio-addons/base:(?<currentValue>.+?)\""],
