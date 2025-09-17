@@ -1,6 +1,7 @@
 ## 1.2.2
 
 - Fix bug in Dockerfile
+- Update yq to 4.47.2 again
 
 ## 1.2.1
 
