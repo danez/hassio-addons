@@ -21,7 +21,7 @@ RUN apk add --no-cache \
     postgresql17-client=17.6-r0 \
     # yq
     yq-go=4.46.1-r2 \
-    yq --version
+    && yq --version
 
 
 ARG BUILD_ARCH BUILD_RESTICPROFILE_VERSION BUILD_RESTIC_VERSION BUILD_RCLONE_VERSION

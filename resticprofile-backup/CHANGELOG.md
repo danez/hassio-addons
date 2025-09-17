@@ -1,3 +1,7 @@
+## 1.2.2
+
+- Fix bug in Dockerfile
+
 ## 1.2.1
 
 - Mount /share with read-write permission
