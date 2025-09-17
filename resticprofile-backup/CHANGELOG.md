@@ -1,3 +1,7 @@
+## 1.2.1
+
+- Mount /share with read-write permission
+
 ## 1.2.0
 
 - Use hassio base image for better logging
