@@ -14,6 +14,6 @@ labels:
   org.opencontainers.image.source: "https://github.com/danez/hassio-addons/tree/main/resticprofile-backup"
   org.opencontainers.image.licenses: "MIT"
 args:
-  BUILD_RESTIC_VERSION: "0.18.0"
+  BUILD_RESTIC_VERSION: "0.18.1"
   BUILD_RESTICPROFILE_VERSION: "0.31.0"
   BUILD_RCLONE_VERSION: "1.71.0"
