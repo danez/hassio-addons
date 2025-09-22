@@ -82,5 +82,6 @@ RUN \
 
 RUN mkdir -p /usr/local/etc/resticprofile/ \
     && chmod +x /usr/local/bin/cifs-mount.sh \
+    && chmod +x /usr/local/bin/cifs-unmount.sh \
     && chmod +x /usr/local/bin/init.sh \
     && chmod +x /usr/local/bin/resticprofile-schedule.sh

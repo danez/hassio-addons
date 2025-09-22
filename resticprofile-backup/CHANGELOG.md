@@ -1,3 +1,7 @@
+## 1.3.0
+
+- Properly unmount network shares on container shutdown
+- Update restic to 0.18.1
 ## 1.2.2
 
 - Fix bug in Dockerfile
