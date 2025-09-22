@@ -2,6 +2,27 @@
 
 set -euo pipefail
 
+# Available devices
+blkid | awk '{print substr($1, 0, length($1) - 1)}' | awk -F'/' '{print $NF}' > availabledisks
+echo "NAME" >> availabledisks
+
+## List available Disk with Labels and Id
+bashio::log.blue "---------------------------------------------------"
+bashio::log.green "Available local disks for mounting:"
+output=$(lsblk -o name,label,size,fstype,ro | awk '$4 != "" { print $0 }' | grep -f availabledisks)
+if [ "$(echo "$output" | grep -c '^')" -le 1 ]; then
+  bashio::log.yellow "No local disks available"
+else
+  echo "$output"
+fi
+bashio::log.blue "---------------------------------------------------"
+rm availabledisks
+
+# Show support fs https://github.com/dianlight/hassio-addons/blob/2e903184254617ac2484fe7c03a6e33e6987151c/sambanas/rootfs/etc/s6-overlay/s6-rc.d/init-automount/run#L106
+fstypessupport=$(grep -v nodev < /proc/filesystems | awk '{$1=" "$1}1' | tr -d '\n\t')
+bashio::log.green "Supported fs: ${fstypessupport}"
+bashio::log.blue "---------------------------------------------------"
+
 # if password file does not exist, generate a new one
 if [ ! -f /config/password.txt ]; then
   bashio::log.info "Generating new restic password file..."

@@ -2,3 +2,6 @@ configuration:
   smb_shares:
     name: SMB Shares
     description: Configure SMB shares that should be connected.
+  localdisks:
+    name: Local Mounted Disks
+    description: Specify which local disks to mount (e.g., sda1, nvme1n1p1). Separate multiple entries with commas.

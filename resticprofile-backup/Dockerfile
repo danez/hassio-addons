@@ -6,6 +6,8 @@ FROM ${BUILD_FROM}
 COPY rootfs /
 
 RUN apk add --no-cache \
+    # lsblk
+    lsblk=2.41-r9 \
     # Install cifs-utils and its dependencies for SMB/CIFS support
     libcap-ng=0.8.5-r0 \
     talloc=2.4.2-r1 \
@@ -84,4 +86,6 @@ RUN mkdir -p /usr/local/etc/resticprofile/ \
     && chmod +x /usr/local/bin/cifs-mount.sh \
     && chmod +x /usr/local/bin/cifs-unmount.sh \
     && chmod +x /usr/local/bin/init.sh \
+    && chmod +x /usr/local/bin/local-mount.sh \
+    && chmod +x /usr/local/bin/local-unmount.sh \
     && chmod +x /usr/local/bin/resticprofile-schedule.sh
