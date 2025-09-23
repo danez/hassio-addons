@@ -14,6 +14,12 @@ if bashio::config.has_value 'smb_shares'; then
 
         bashio::log.info "Unmounting ${local} ..."
 
+        # Skip if mountpoint doesn't exist
+        if [ ! -d "$local" ]; then
+            bashio::log.info "Skipping $local; $local not found."
+            continue
+        fi
+
         # Try normal unmount first and if it fails try lazy unmount
         if ! umount "$local"; then
             bashio::log.warning "Unmount failed, device busy, trying lazy unmount!"
