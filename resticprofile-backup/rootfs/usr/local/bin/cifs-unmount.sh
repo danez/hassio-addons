@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
 
 set -euo pipefail
 
@@ -9,7 +10,7 @@ if bashio::config.has_value 'smb_shares'; then
 
     for share in $SMBSHARES
     do
-        local=$(bashio::jq "$share" ".local")
+        local="$(bashio::jq "$share" ".local")"
 
         bashio::log.info "Unmounting ${local} ..."
 

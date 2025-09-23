@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
 
 set -euo pipefail
 
@@ -32,8 +33,8 @@ if bashio::config.has_value 'localdisks'; then
         fi
 
         # Check FS type and set relative options (thanks @https://github.com/dianlight/hassio-addons)
-        fstype=$(lsblk "$dev" -no fstype)
-        options="nosuid,relatime,noexec"
+        fstype=$(lsblk -no fstype -- "$dev")
+        options="nosuid,nodev,relatime,noexec"
         type="auto"
 
         # Check if supported
@@ -64,13 +65,14 @@ if bashio::config.has_value 'localdisks'; then
                 ;;
         esac
 
-        # shellcheck disable=SC2015
-        mount -t $type "$devpath"/"$disk" /mnt/"$disk" -o $options && bashio::log.info "Success! $disk mounted to /mnt/$disk" \
-            || (
-                bashio::log.fatal "Unable to mount local drives! Please check the name."
-                rmdir /mnt/"$disk"
-                bashio::addon.stop
-            )
+
+        if mount -t "$type" -- "$dev" "/mnt/$disk" -o "$options"; then
+            bashio::log.info "Success! $disk mounted to /mnt/$disk"
+        else
+            bashio::log.fatal "Unable to mount $disk ($dev, fstype=${fstype})"
+            # Stop the addon if any disk could not be mounted
+            bashio::addon.stop
+        fi
     done
 
 fi
