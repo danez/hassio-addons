@@ -4,11 +4,11 @@
 set -euo pipefail
 
 if bashio::config.has_value 'smb_shares'; then
-    SMBSHARES="$(bashio::config 'smb_shares')"
+    SMBSHARES=$(bashio::config 'smb_shares')
 
     bashio::log.info "SMB shares mounting..."
 
-    for share in $(printf '%s' "$SMBSHARES" | jq -rc '.[]');
+    for share in $SMBSHARES
     do
         host="$(bashio::jq "$share" ".host")"
         local="$(bashio::jq "$share" ".local")"
