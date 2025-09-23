@@ -1,3 +1,10 @@
+## 1.3.0
+
+- Properly unmount network shares on container shutdown
+- Update restic to 0.18.1
+- Add new option `localdisks` which enables mounting local disks for backups (USB drives, secondary drives,...)
+- Startup now lists available local disks and supported filesystems in logs
+
 ## 1.2.2
 
 - Fix bug in Dockerfile

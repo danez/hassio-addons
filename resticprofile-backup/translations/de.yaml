@@ -2,3 +2,8 @@ configuration:
   smb_shares:
     name: SMB-Freigaben
     description: Konfiguration der SMB-Freigaben, die verbunden werden sollen.
+  localdisks:
+    name: Lokale eingehängte Laufwerke
+    description:
+      Einzuhängende lokale Laufwerke (Gerätename, UUID oder Label) angeben, z.B.
+      sda1, 1234-ABCD, MeinLabel. Mehrere Einträge mit Kommas trennen.
