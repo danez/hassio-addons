@@ -8,10 +8,10 @@ set -euo pipefail
 
 if bashio::config.has_value 'localdisks'; then
     LOCALDISKS=$(bashio::config 'localdisks')
-    echo "Local Disks mounting..."
 
-    fstypessupport=$(grep -v nodev < /proc/filesystems | awk '{$1=" "$1}1' | tr -d '\n\t')
+    bashio::log.info "Local Disks mounting..."
 
+    fstypessupport="$(grep -v nodev /proc/filesystems | awk '{print $NF}')"
     # Separate comma separated values
     # shellcheck disable=SC2086
     for disk in ${LOCALDISKS//,/ }; do
@@ -33,14 +33,19 @@ if bashio::config.has_value 'localdisks'; then
         fi
 
         # Check FS type and set relative options (thanks @https://github.com/dianlight/hassio-addons)
-        fstype=$(lsblk -no fstype -- "$dev")
+        fstype="$(lsblk -no fstype -- "$dev")"
+        if [ -z "${fstype:-}" ]; then
+            # lsblk might not return a fs, blkid directly probes the disk and might still return something
+            fstype="$(blkid -o value -s TYPE -- "$dev" 2>/dev/null || true)"
+        fi
         options="nosuid,nodev,relatime,noexec"
         type="auto"
 
         # Check if supported
-        if [[ "${fstypessupport}" != *"${fstype}"* ]]; then
-            bashio::log.fatal "${fstype} type for ${disk} is not supported"
-            break
+        if [ -z "${fstype:-}" ] || ! printf '%s\n' "$fstypessupport" | grep -qw -- "${fstype}"; then
+            bashio::log.fatal "${fstype:-unknown} type for ${disk} is not supported"
+            # Stop the addon if any disk could not be mounted
+            bashio::addon.stop
         fi
 
         # Creates dir
@@ -50,7 +55,7 @@ if bashio::config.has_value 'localdisks'; then
         bashio::log.info "Mounting ${disk} of type ${fstype}"
         case "$fstype" in
             exfat | vfat | msdos)
-                bashio::log.warning "${fstype} permissions and ACL don't works and this is an EXPERIMENTAL support"
+                bashio::log.warning "${fstype}: permissions/ACLs may not work; EXPERIMENTAL support"
                 options="${options},umask=000"
                 ;;
             ntfs)

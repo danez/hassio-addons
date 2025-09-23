@@ -23,9 +23,16 @@ if bashio::config.has_value 'smb_shares'; then
         fi
 
         bashio::log.info "Mount ${local} from ${host}..."
-        bashio::log.debug "mount -t cifs -o \"rw,noserverino,username=$username,password=$password$CIFS_VERSION_ARG\" $host $local"
+
+        credfile="$(mktemp /run/cifs-cred.XXXXXX)"
+        chmod 600 "$credfile"
+        { echo "username=$username"; echo "password=$password"; } > "$credfile"
+
         mkdir -p "$local"
-        mount -t cifs -o "rw,noserverino,username=$username,password=$password$CIFS_VERSION_ARG" "$host" "$local"
+        mount -t cifs -o "rw,noserverino,credentials=$credfile$CIFS_VERSION_ARG" "$host" "$local"
+
+        rm -f "$credfile"
+
         bashio::log.info "Success!"
     done
 fi
