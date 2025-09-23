@@ -23,11 +23,11 @@ if bashio::config.has_value 'localdisks'; then
         dev=""
         if [ -e "/dev/$disk" ]; then
             dev="/dev/$disk"
+        elif [ -e "/dev/disk/by-uuid/$disk" ]; then
+            dev="/dev/disk/by-uuid/$disk"
+        elif [ -e "/dev/disk/by-label/$disk" ]; then
+            dev="/dev/disk/by-label/$disk"
         else
-            dev="$(blkid -U "$disk" 2>/dev/null || true)"
-            [ -z "$dev" ] && dev="$(blkid -L "$disk" 2>/dev/null || true)"
-        fi
-        if [ -z "${dev:-}" ] || [ ! -e "$dev" ]; then
             bashio::log.fatal "$disk does not match any known physical device, UUID, or label."
             continue
         fi
