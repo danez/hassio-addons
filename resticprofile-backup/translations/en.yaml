@@ -3,5 +3,5 @@ configuration:
     name: SMB Shares
     description: Configure SMB shares that should be connected.
   localdisks:
-    name: Local Mounted Disks
-    description: Specify which local disks (diskname, uuid or label) to mount (e.g., sda1, 1234-ABCD, myLabel). Separate multiple entries with commas.
+    name: Local disks to mount
+    description: Specify local disks by device name, UUID, or label (e.g., sda1, 1234-ABCD, MyLabel). Separate multiple entries with commas.

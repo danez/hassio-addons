@@ -16,7 +16,7 @@ if bashio::config.has_value 'smb_shares'; then
         password="$(bashio::jq "$share" ".password")"
         smb_version="$(bashio::jq "$share" ".smb_version")"
 
-        if [ -n "${smb_version:-}" ]; then
+        if [ -n "${smb_version:-}" ] && [ "$smb_version" != "null" ]; then
             CIFS_VERSION_ARG=",vers=$smb_version"
         else
             CIFS_VERSION_ARG=""
