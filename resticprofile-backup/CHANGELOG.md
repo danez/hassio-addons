@@ -1,3 +1,7 @@
+## 1.3.1
+
+- Fix mounting by UUID and label
+- 
 ## 1.3.0
 
 - Properly unmount network shares on container shutdown
