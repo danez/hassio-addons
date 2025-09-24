@@ -1,3 +1,7 @@
+## 1.3.2
+
+- Update rclone to 1.17.1
+
 ## 1.3.1
 
 - Fix mounting by UUID and label
