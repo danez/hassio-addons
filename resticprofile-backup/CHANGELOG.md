@@ -1,3 +1,8 @@
+## 1.3.3
+
+- Update resticprofile to 0.32.0
+- update ghcr.io/hassio-addons/base docker tag to v18.1.2
+
 ## 1.3.2
 
 - Update rclone to 1.17.1
