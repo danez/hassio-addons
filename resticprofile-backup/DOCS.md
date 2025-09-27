@@ -42,9 +42,31 @@ container:
 - `/share`
 - `/ssl`
 
+### Mounting Local Disks
+
+To mount local disks (such as USB drives or secondary internal drives), use the
+`localdisks` configuration option. This option accepts a comma-separated list of
+identifiers, which can be device names (e.g., `sda1`), UUIDs (e.g.,
+`0000-0000`), or filesystem labels (e.g., `mylabel`).
+
+Example:
+
+```yaml
+localdisks: sda1,0000-0000, mylabel
+```
+
+When the add-on starts, it will attempt to mount each specified disk. The add-on
+logs will display all available disks that can be mounted, as well as all
+supported filesystems at start. This information can help you identify the
+correct identifiers to use in your configuration.
+
+Ensure that the disks you want to mount are connected and recognized by the host
+system before starting the add-on.
+
 ### Mounting SMB Shares
 
 To mount SMB shares for your backups, configure them in the add-on settings.
+
 Example:
 
 ```yaml
