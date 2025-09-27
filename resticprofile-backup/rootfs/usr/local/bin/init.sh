@@ -11,7 +11,7 @@ echo "NAME" >> "$tmp_avail"
 ## List available Disk with Labels and Id
 bashio::log.blue "---------------------------------------------------"
 bashio::log.green "Available local disks for mounting:"
-output=$(lsblk -o name,label,size,fstype,ro | awk '$4 != "" { print $0 }' | grep -f "$tmp_avail")
+output=$(lsblk -o name,uuid,label,size,fstype,ro | awk '$4 != "" { print $0 }' | grep -f "$tmp_avail")
 if [ "$(echo "$output" | grep -c '^')" -le 1 ]; then
   bashio::log.yellow "No local disks available"
 else
