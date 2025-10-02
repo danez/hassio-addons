@@ -1,6 +1,7 @@
-## next
+## 1.3.5
 
 - show UUID for available disks too
+- update ghcr.io/hassio-addons/base docker tag to v18.1.4
 
 ## 1.3.4
 
