@@ -1,6 +1,7 @@
 ## Unreleased
 
-- update yq-go to 4.47.2-r1
+- update yq-go dependency to 4.47.2-r1
+- update ghcr.io/hassio-addons/base docker tag to v18.2.0
 
 ## 1.3.5
 
