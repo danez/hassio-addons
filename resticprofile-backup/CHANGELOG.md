@@ -1,3 +1,7 @@
+## Unreleased
+
+- update yq-go to 4.47.2-r1
+
 ## 1.3.5
 
 - show UUID for available disks too
