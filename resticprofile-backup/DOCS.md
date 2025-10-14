@@ -39,8 +39,12 @@ container:
 - `/data`
 - `/homeassistant`
 - `/media`
-- `/share`
 - `/ssl`
+
+The following Home Assistant folders are mounted (read-write) inside the add-on
+container:
+
+- `/share`
 
 ### Mounting Local Disks
 
@@ -105,3 +109,33 @@ For available options, see the
 [cifs-utils manpage](https://manpages.debian.org/unstable/cifs-utils/mount.cifs.8.en.html#vers=arg).
 
 Only set this if you encounter compatibility or performance issues.
+
+### PostgreSQL Backups
+
+The add-on includes PostgreSQL client tools such as `pg_dump`, `pg_dumpall` and `psql`, which you can use to back up and manage PostgreSQL databases. For usage details, refer to the [PostgreSQL documentation](https://www.postgresql.org/docs/current/reference-client.html).
+
+Example profiles.yaml:
+
+> **Note:** The backup commands reference a `.pgpass` file for PostgreSQL authentication.
+> To create this file, add a line for each database in the format:
+> `hostname:port:database:username:password`
+> Save the file as `.pgpass` in your add-on config directory (e.g., `/addon_configs/371a6e26_resticprofile-backup/.pgpass`) and set its permissions to be readable only by the add-on for security.
+>
+> For more details, see the [PostgreSQL password file documentation](https://www.postgresql.org/docs/current/libpq-pgpass.html).
+
+```yaml
+# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config.json
+
+version: "1"
+postgres:
+  repository: "local:/mnt/sda1"
+  password-file: "password.txt"
+
+  backup:
+    run-before:
+      - "PGPASSFILE=/addon_configs/371a6e26_resticprofile-backup/.pgpass pg_dump -U immich -h db21ed7f-postgres-latest -p 5432 immich > /share/postgres/immich.sql"
+      - "PGPASSFILE=/addon_configs/371a6e26_resticprofile-backup/.pgpass pg_dump -U paperless -h db21ed7f-postgres-latest -p 5432 paperless > /share/postgres/paperless.sql"
+    schedule: "02:42"
+    source:
+      - "/share/postgres"
+```
