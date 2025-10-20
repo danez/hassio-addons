@@ -1,3 +1,7 @@
+## 1.3.7
+
+- update dependency rclone to v1.71.2
+
 ## 1.3.6
 
 - update yq-go dependency to 4.47.2-r1
