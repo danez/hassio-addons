@@ -9,8 +9,8 @@ privileged:
   - SYS_ADMIN
   - DAC_READ_SEARCH
 arch:
-  - armhf
-  - armv7
+  - aarch64
+  - amd64
 init: false
 devices:
   - /dev/sda
