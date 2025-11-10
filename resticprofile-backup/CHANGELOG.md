@@ -1,3 +1,9 @@
+## Unreleased
+
+- remove builds for armv7, armhf and i386 as unsupported by Home Assistant 2025.11
+- remove codenotary as unsupported by Home Assistant
+- update dependency libwbclient to v4.21.9-r1
+
 ## 1.3.7
 
 - update dependency rclone to v1.71.2
