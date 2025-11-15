@@ -1,3 +1,7 @@
+## 1.3.9
+
+- update postgresql to v17.7-r0
+
 ## 1.3.8
 
 - remove builds for armv7, armhf and i386 as unsupported by Home Assistant
