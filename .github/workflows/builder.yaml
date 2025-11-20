@@ -23,7 +23,7 @@ jobs:
       pull-requests: read
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Get changed files
         id: changed_files
@@ -73,7 +73,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Get information
         id: info
