@@ -23,7 +23,7 @@ fi
 
 EOF
 
-FROM node:22.21.1-alpine3.22 AS node
+FROM node:24.11.1-alpine3.22 AS node
 
 # Remove yarn and yarnpkg to use corepack managed versions later
 RUN rm -rf /usr/local/bin/yarn /usr/local/bin/yarnpkg
