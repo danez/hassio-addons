@@ -36,9 +36,8 @@ profile affine flags=(attach_disconnected,mediate_deleted) {
 
   # Access required for service functionality
   /usr/local/bin/node r,
-  /usr/local/bin/node r,
+  /usr/local/bin/yarn r,
   /usr/bin/redis-server r,
   /bin/bash rix,
   /bin/echo ix,
-  /dev/tty rw,
 }

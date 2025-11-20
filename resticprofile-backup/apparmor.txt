@@ -60,5 +60,4 @@ profile resticprofile flags=(attach_disconnected,mediate_deleted) {
   /usr/bin/rclone r,
   /bin/bash rix,
   /bin/echo ix,
-  /dev/tty rw,
 }
