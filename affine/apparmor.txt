@@ -1,0 +1,44 @@
+#include <tunables/global>
+
+profile affine flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  file,
+  signal (send) set=(kill,term,int,hup,cont),
+
+  # S6-Overlay
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /usr/local/bin/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
+  /run/{,**} rwk,
+  /dev/tty rw,
+
+  # Bashio
+  /usr/lib/bashio/** ix,
+  /tmp/** rwk,
+
+  # Access to options.json and other files within your addon
+  /data/** rw,
+
+  # Access to the config folder
+  /config/** rw,
+
+  # Access to mapped volumes specified in config.json
+  /share/** rw,
+
+  # Access required for service functionality
+  /usr/local/bin/node r,
+  /usr/local/bin/node r,
+  /usr/bin/redis-server r,
+  /bin/bash rix,
+  /bin/echo ix,
+  /dev/tty rw,
+}
