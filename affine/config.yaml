@@ -30,4 +30,5 @@ schema:
   DB_HOSTNAME: "str"
   DB_PORT: "port"
   DB_DATABASE_NAME: "str"
+  TURNSTILE_SITE_KEY: "str?"
 image: "ghcr.io/danez/{arch}-addon-affine"
