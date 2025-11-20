@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+
+set -euo pipefail
+
+bashio::log.info "Starting redis server..."
+
+# Default to warning if not set
+LOG_LEVEL="$(bashio::config 'LOG_LEVEL')"
+LOG_LEVEL="${LOG_LEVEL:-warning}"
+
+exec redis-server --loglevel "$LOG_LEVEL"

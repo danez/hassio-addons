@@ -1,0 +1,33 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+
+set -euo pipefail
+
+# Validate required configuration
+for key in DB_USERNAME DB_PASSWORD DB_HOSTNAME DB_PORT DB_DATABASE_NAME; do
+    if ! bashio::config.exists "$key"; then
+        bashio::log.fatal "Required configuration '$key' is missing!"
+        exit 1
+    fi
+done
+
+# Replace env
+AFFINE_INDEXER_ENABLED=false
+DATABASE_URL="postgresql://$(bashio::config 'DB_USERNAME'):$(bashio::config 'DB_PASSWORD')@$(bashio::config 'DB_HOSTNAME'):$(bashio::config 'DB_PORT')/$(bashio::config 'DB_DATABASE_NAME')"
+REDIS_SERVER_HOST=127.0.0.1
+
+
+export AFFINE_INDEXER_ENABLED
+export DATABASE_URL
+export REDIS_SERVER_HOST
+
+
+echo -n "${AFFINE_INDEXER_ENABLED}" > /var/run/s6/container_environment/AFFINE_INDEXER_ENABLED
+echo -n "${DATABASE_URL}" > /var/run/s6/container_environment/DATABASE_URL
+echo -n "${REDIS_SERVER_HOST}" > /var/run/s6/container_environment/REDIS_SERVER_HOST
+
+
+if [ ! -f /root/.affine/config/config.json ]; then
+    cp /usr/local/share/affine/config.example.json /root/.affine/config/config.json
+    bashio::log.yellow "Default config copied to /root/.affine/config/config.json"
+fi

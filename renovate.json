@@ -17,7 +17,8 @@
       "description": "Update apk packages in Dockerfiles",
       "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "matchStrings": [
-        "\\s{4}(?<depName>\\S+?)=(?<currentValue>.+?)\\s\\\\\\n"
+        "\\s{4}(?<depName>\\S+?)=(?<currentValue>.+?)\\s\\\\\\n",
+        "(?<depName>\\S+?)=(?<currentValue>[0-9.-_a-zA-Z]+?)(\\s\\\\)?\\n"
       ],
       "datasourceTemplate": "repology",
       "packageNameTemplate": "alpine_3_22/{{{depName}}}",
@@ -57,6 +58,18 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "rclone",
       "packageNameTemplate": "rclone/rclone",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Update AFFiNE",
+      "managerFilePatterns": ["//build.yaml$/"],
+      "matchStrings": [
+        "BUILD_AFFINE_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "AFFiNE",
+      "packageNameTemplate": "toeverything/AFFiNE",
       "versioningTemplate": "semver"
     },
     {
