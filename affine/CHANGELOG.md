@@ -1,3 +1,7 @@
+## 1.1.0
+
+- Added configuration support for custom Cloudflare Turnstile site key
+
 ## 1.0.0
 
 - Initial release of the Home Assistant Add-On with AFFiNE 0.25.5
