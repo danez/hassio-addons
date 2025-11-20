@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+
+set -euo pipefail
+
+cd /app || exit 1
+NODE_ENV="production" node /app/scripts/self-host-predeploy.js

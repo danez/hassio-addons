@@ -1,0 +1,18 @@
+configuration:
+  AFFINE_INDEXER_ENABLED:
+    name: AFFiNE Indexer
+    description:
+      Activate the indexer for the fulltext search. Needs more resources.
+  LOG_LEVEL:
+    name: Log level
+    description: The log level for redis.
+  DB_USERNAME:
+    name: PostgreSQL username
+  DB_PASSWORD:
+    name: PostgreSQL password
+  DB_HOSTNAME:
+    name: PostgreSQL hostname
+  DB_PORT:
+    name: PostgreSQL port
+  DB_DATABASE_NAME:
+    name: PostgreSQL database name

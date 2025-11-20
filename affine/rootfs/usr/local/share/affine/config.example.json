@@ -1,0 +1,31 @@
+{
+  "$schema": "https://github.com/toeverything/affine/releases/latest/download/config.schema.json",
+  "server": {
+    "name": "AFFiNE Self Hosted Server"
+  },
+  "storages": {
+    "blob.storage": {
+      "provider": "fs",
+      "bucket": "blobs",
+      "config": {
+        "path": "/share/affine/storage"
+      }
+    },
+    "avatar.storage": {
+      "provider": "fs",
+      "bucket": "avatars",
+      "config": {
+        "path": "/share/affine/storage"
+      }
+    }
+  },
+  "copilot": {
+    "storage": {
+      "provider": "fs",
+      "bucket": "copilot",
+      "config": {
+        "path": "/share/affine/storage"
+      }
+    }
+  }
+}
