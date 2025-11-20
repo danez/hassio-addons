@@ -20,6 +20,7 @@ WORKDIR /app
 # Enable jemalloc by preloading the library
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
+# Re-declare ARG for final stage (ARGs don't persist across stages)
 ARG BUILD_AFFINE_VERSION=0.25.5
 
 RUN <<EOF
@@ -69,6 +70,9 @@ sed -i '/output[[:space:]]*=[[:space:]]*".*node_modules\/\.prisma\/client"/d' /a
 
 # Run yarn install to ensure that musl native bindings are installed and no dev dependencies are present
 NODE_ENV="production" yarn install
+
+# Create Affine config directory
+mkdir -p /root/.affine/config/
 
 # Clean up unneeded files
 rm -rf \

@@ -3,5 +3,9 @@
 
 set -euo pipefail
 
+bashio::log.info "Running AFFiNE database migrations..."
+
 cd /app || exit 1
 NODE_ENV="production" node /app/scripts/self-host-predeploy.js
+
+bashio::log.info "Database migrations completed"

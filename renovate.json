@@ -18,7 +18,7 @@
       "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "matchStrings": [
         "\\s{4}(?<depName>\\S+?)=(?<currentValue>.+?)\\s\\\\\\n",
-        "(?<depName>\\S+?)=(?<currentValue>[0-9.-_a-z]+?)(\\s\\\\)?\\n"
+        "(?<depName>\\S+?)=(?<currentValue>[0-9.-_a-zA-Z]+?)(\\s\\\\)?\\n"
       ],
       "datasourceTemplate": "repology",
       "packageNameTemplate": "alpine_3_22/{{{depName}}}",
