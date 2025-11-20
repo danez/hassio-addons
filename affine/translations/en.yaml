@@ -1,8 +1,4 @@
 configuration:
-  AFFINE_INDEXER_ENABLED:
-    name: AFFiNE Indexer
-    description:
-      Activate the indexer for the fulltext search. Needs more resources.
   LOG_LEVEL:
     name: Log level
     description: The log level for redis.
@@ -16,3 +12,6 @@ configuration:
     name: PostgreSQL port
   DB_DATABASE_NAME:
     name: PostgreSQL database name
+  TURNSTILE_SITE_KEY:
+    name: Cloudflare Turnstile Site Key
+    description: The site key for Cloudflare Turnstile CAPTCHA integration.
