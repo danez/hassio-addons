@@ -1,8 +1,27 @@
-ARG BUILD_AFFINE_VERSION=0.25.5
+ARG BUILD_AFFINE_VERSION
 FROM ghcr.io/toeverything/affine:${BUILD_AFFINE_VERSION} AS affine
 
+ARG BUILD_ARCH
+
+RUN <<EOF
+set -eu
+
 # Remove node_modules to reduce final image size and we are installing them later anyway again
-RUN rm -rf /app/node_modules
+rm -rf /app/node_modules
+
+# Remove unneeded native bindings for other architectures
+rm -rf /app/dist/server-native.armv7.node
+
+# Remove source maps to reduce final image size
+rm -rf /app/dist/main.js.map /app/src /app/static/js/*.js.map /app/static/mobile/js/*.js.map /app/static/admin/js/*.js.map
+
+if [ "${BUILD_ARCH}" = "aarch64" ]; then
+    rm -rf /app/dist/server-native.x64.node
+else
+    rm -rf /app/dist/server-native.arm64.node
+fi
+
+EOF
 
 FROM node:22.21.1-alpine3.22 AS node
 
@@ -21,7 +40,7 @@ WORKDIR /app
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
 # Re-declare ARG for final stage (ARGs don't persist across stages)
-ARG BUILD_AFFINE_VERSION=0.25.5
+ARG BUILD_AFFINE_VERSION
 
 RUN <<EOF
 set -euo pipefail
