@@ -71,7 +71,7 @@ jobs:
           PR_NUM="${{ github.event.pull_request.number }}"
           # Strip conventional commit prefix (feat:, fix(scope):, chore!, etc.)
           CLEAN_TITLE="$(echo "$PR_TITLE" | sed -E 's/^[[:space:]]*(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert|release|chore|deps)(\([^)]+\))?(!)?:[[:space:]]*//I')"
-          ENTRY="- ${CLEAN_TITLE} (#{${PR_NUM}})"
+          ENTRY="- ${CLEAN_TITLE} (#${PR_NUM})"
           echo "PR title: $PR_TITLE"
           echo "Cleaned title: $CLEAN_TITLE"
           echo "Entry to add: $ENTRY"
