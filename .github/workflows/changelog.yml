@@ -1,0 +1,133 @@
+name: "Renovate — update addon changelogs"
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  contents: write
+
+jobs:
+  update-changelogs:
+    if: startsWith(github.head_ref, 'renovate/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 10
+
+      - name: Set up Git user
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Determine changed files vs base
+        id: changed
+        run: |
+          BASE="${{ github.event.pull_request.base.ref }}"
+          echo "Base ref: $BASE"
+          # Fetch the base branch for diffing
+          git fetch origin "$BASE":"refs/remotes/origin/$BASE" --no-tags
+          CHANGED_FILES=$(git diff --name-only "refs/remotes/origin/$BASE"...HEAD || true)
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Find affected addon directories
+        id: addons
+        run: |
+          changed="${{ steps.changed.outputs.changed_files }}"
+          echo "Changed files:"
+          echo "$changed"
+          # Collect unique top-level directories from changed paths
+          addons=""
+          while IFS= read -r f; do
+            # skip empty lines
+            [ -z "$f" ] && continue
+            # get top-level directory (first path component)
+            top=$(echo "$f" | sed -E 's|^([^/.]+).*|\1|')
+            # only include if it's a directory in the repo (exists or will exist)
+            if [ -d "$top" ] || [ -f "$top" ] || true; then
+              case " $addons " in
+                *" $top "*) ;;
+                *) addons="$addons $top";;
+              esac
+            fi
+          done <<EOF
+          $changed
+          EOF
+          # Trim leading space
+          addons="$(echo "$addons" | sed -E 's/^[[:space:]]+//')"
+          echo "addons=$addons" >> $GITHUB_OUTPUT
+          echo "Found addons: $addons"
+
+      - name: Update changelogs for each addon
+        id: update
+        run: |
+          set -euo pipefail
+          IFS=' ' read -r -a ADDON_ARRAY <<< "${{ steps.addons.outputs.addons }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_NUM="${{ github.event.pull_request.number }}"
+          # Strip conventional commit prefix (feat:, fix(scope):, chore!, etc.)
+          CLEAN_TITLE="$(echo "$PR_TITLE" | sed -E 's/^[[:space:]]*(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert|release|chore|deps)(\([^)]+\))?(!)?:[[:space:]]*//I')"
+          ENTRY="- ${CLEAN_TITLE} (#{${PR_NUM}})"
+          echo "PR title: $PR_TITLE"
+          echo "Cleaned title: $CLEAN_TITLE"
+          echo "Entry to add: $ENTRY"
+          changed_any=false
+
+          for addon in "${ADDON_ARRAY[@]}"; do
+            [ -z "$addon" ] && continue
+            # Skip non-directory-ish names that are single files at root (optional)
+            # If you want to only process known addon directories, filter here.
+            # We will look for a changelog file inside the addon directory.
+            # Try several common changelog filenames:
+            file="$addon/CHANGELOG.md"
+            if [ -f "$file" ]; then
+              echo "Updating existing changelog: $file"
+              tmp="$(mktemp)"
+              # If file contains a "# Unreleased" or "#Unreleased" header, insert entry after header
+              if grep -i -q '^#\s*Unreleased' "$file"; then
+                # Insert entry immediately after first Unreleased header and an optional blank line
+                awk -v entry="$ENTRY" 'BEGIN{printed=0;done=0}
+                  {
+                    if(!printed && tolower($0) ~ /^#\s*unreleased/){
+                      print $0
+                      print ""
+                      print entry
+                      printed=1
+                      next
+                    }
+                    print $0
+                  }' "$file" > "$tmp"
+              else
+                # Prepend a "# Unreleased" section with the entry
+                {
+                  echo "# Unreleased"
+                  echo ""
+                  echo "$ENTRY"
+                  echo ""
+                  cat "$file"
+                } > "$tmp"
+              fi
+              mv "$tmp" "$file"
+              git add "$file"
+              changed_any=true
+              break
+            fi
+
+            # If no changelog file was found, create CHANGELOG.md with Unreleased section
+            if ! [ -f "$addon/CHANGELOG.md" ] && [ -d "$addon" ]; then
+              echo "No changelog for $addon found"
+            fi
+          done
+
+          if [ "$changed_any" = "true" ]; then
+            git commit -m "chore(changelog): add entry for PR #${PR_NUM}"
+            # Push back to the PR branch
+            git push origin "HEAD:${{ github.head_ref }}"
+            echo "Pushed changelog updates."
+          else
+            echo "No changelog updates needed."
+          fi
