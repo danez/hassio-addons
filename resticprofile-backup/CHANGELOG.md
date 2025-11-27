@@ -1,3 +1,7 @@
+# Unreleased
+
+- update dependency rclone to v1.72.0 (#41)
+
 ## 1.3.9
 
 - update postgresql to v17.7-r0
