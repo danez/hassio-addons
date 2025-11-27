@@ -15,8 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          fetch-depth: 10
+          fetch-depth: 0
           token: ${{ secrets.CHANGELOG_TOKEN }}
+          ref: ${{ github.head_ref }}
 
       - name: Skip if last commit authored by changelog bot
         run: |
