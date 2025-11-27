@@ -124,7 +124,7 @@ jobs:
           done
 
           if [ "$changed_any" = "true" ]; then
-            git commit -m "chore(changelog): add entry for PR #${PR_NUM}"
+            git commit -m "chore(changelog): add entry"
             # Push back to the PR branch
             git push origin "HEAD:${{ github.head_ref }}"
             echo "Pushed changelog updates."
