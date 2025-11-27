@@ -2,14 +2,14 @@ name: "Renovate — update addon changelogs"
 
 on:
   pull_request:
-    branches:
-      - "renovate/**"
+    types: [opened, reopened, synchronize]
 
 permissions:
   contents: write
 
 jobs:
   update-changelogs:
+    if: startsWith(github.head_ref, 'renovate/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
