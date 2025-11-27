@@ -18,6 +18,16 @@ jobs:
           fetch-depth: 10
           token: ${{ secrets.CHANGELOG_TOKEN }}
 
+      - name: Skip if last commit authored by changelog bot
+        run: |
+          set -euo pipefail
+          # Get author email of latest commit on the checked-out head
+          LAST_AUTHOR_EMAIL=$(git log -1 --pretty=format:%ae || echo "")
+          if [ "$LAST_AUTHOR_EMAIL" = "120286224+danez-bot@users.noreply.github.com" ]; then
+            echo "Last commit authored by changelog bot, skipping workflow."
+            exit 0
+          fi
+
       - name: Set up Git user
         run: |
           git config user.name "danez-bot"
