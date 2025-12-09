@@ -1,3 +1,7 @@
+# Unreleased
+
+- update dependency affine to v0.25.7 (#44)
+
 ## 1.1.0
 
 - Added configuration support for custom Cloudflare Turnstile site key
