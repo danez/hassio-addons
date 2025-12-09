@@ -8,4 +8,4 @@ labels:
   org.opencontainers.image.source: "https://github.com/danez/hassio-addons/tree/main/affine"
   org.opencontainers.image.licenses: "MIT"
 args:
-  BUILD_AFFINE_VERSION: "0.25.5"
+  BUILD_AFFINE_VERSION: "0.25.7"
