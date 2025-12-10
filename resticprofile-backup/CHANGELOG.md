@@ -1,3 +1,7 @@
+# Unreleased
+
+- update dependency rclone to v1.72.1 (#45)
+
 # 1.3.10
 
 - update dependency yq-go to v4.47.2-r2 (#43)
