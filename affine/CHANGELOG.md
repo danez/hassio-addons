@@ -1,4 +1,4 @@
-# Unreleased
+# 1.1.1
 
 - update dependency affine to v0.25.7 (#44)
 
