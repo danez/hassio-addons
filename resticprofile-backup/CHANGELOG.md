@@ -1,4 +1,4 @@
-# Unreleased
+# 1.3.11
 
 - update dependency rclone to v1.72.1 (#45)
 
