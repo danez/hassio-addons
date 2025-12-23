@@ -1,3 +1,7 @@
+# 2.0.0
+
+- Change image to use debian as a base image
+
 # 1.1.1
 
 - update dependency affine to v0.25.7 (#44)
