@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency talloc to v2.4.3-r0 (#56)
+
 - update dependency zstd-libs to v1.5.7-r2 (#57)
 
 - update dependency cifs-utils to v7.4-r0 (#58)
