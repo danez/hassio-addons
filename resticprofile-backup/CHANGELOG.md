@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency readline to v8.3.1-r0 (#60)
+
 - update dependency yq-go to v4.49.2-r3 (#61)
 
 - update dependency libpq to v18 (#62)
