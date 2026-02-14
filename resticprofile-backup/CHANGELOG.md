@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency libncursesw to v6.5_p20251123-r0 (#53)
+
 - update dependency lsblk to v2.41.2-r0 (#54)
 
 - update dependency rclone to v1.73.0 (#49)
