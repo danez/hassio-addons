@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency lsblk to v2.41.2-r0 (#54)
+
 - update dependency rclone to v1.73.0 (#49)
 
 - update dependency yq-go to v4.47.2-r3 (#47)
