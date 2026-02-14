@@ -21,7 +21,7 @@
         "(?<depName>\\S+?)=(?<currentValue>[0-9.-_a-zA-Z]+?)(\\s\\\\)?\\n"
       ],
       "datasourceTemplate": "repology",
-      "packageNameTemplate": "alpine_3_22/{{{depName}}}",
+      "packageNameTemplate": "alpine_3_23/{{{depName}}}",
       "versioningTemplate": "loose"
     },
     {
