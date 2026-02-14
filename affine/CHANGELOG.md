@@ -1,3 +1,7 @@
+# Unreleased
+
+- update dependency affine to v0.26.2 (#48)
+
 # 2.0.0
 
 - Change image to use debian as a base image
