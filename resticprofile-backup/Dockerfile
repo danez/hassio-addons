@@ -5,7 +5,7 @@ COPY rootfs /
 
 RUN apk add --no-cache \
     # lsblk
-    lsblk=2.41-r9 \
+    lsblk=2.41.2-r0 \
     # Install cifs-utils and its dependencies for SMB/CIFS support
     libcap-ng=0.8.5-r0 \
     talloc=2.4.2-r1 \
