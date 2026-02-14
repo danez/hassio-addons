@@ -1,5 +1,7 @@
 # Unreleased
 
+- update ghcr.io/hassio-addons/debian-base docker tag to v9.2.0 (#50)
+
 - update node.js to v22.22.0 (#51)
 
 - update dependency affine to v0.26.2 (#48)
