@@ -54,5 +54,7 @@ EOF
 # Enable jemalloc by preloading the library
 ENV LD_PRELOAD=libjemalloc.so.2
 
+EXPOSE 3010
+
 # Copy root filesystem
 COPY rootfs /
