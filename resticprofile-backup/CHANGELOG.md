@@ -1,27 +1,17 @@
 # Unreleased
 
+- update ghcr.io/hassio-addons/base docker tag to v20 (#52)
 - update dependency ncurses-terminfo-base to v6.5_p20251123-r0 (#55)
-
 - update dependency talloc to v2.4.3-r0 (#56)
-
 - update dependency zstd-libs to v1.5.7-r2 (#57)
-
 - update dependency cifs-utils to v7.4-r0 (#58)
-
 - update dependency libwbclient to v4.22.6-r0 (#59)
-
 - update dependency readline to v8.3.1-r0 (#60)
-
 - update dependency yq-go to v4.49.2-r3 (#61)
-
 - update dependency libpq to v18 (#62)
-
 - update dependency libncursesw to v6.5_p20251123-r0 (#53)
-
 - update dependency lsblk to v2.41.2-r0 (#54)
-
 - update dependency rclone to v1.73.0 (#49)
-
 - update dependency yq-go to v4.47.2-r3 (#47)
 
 # 1.3.11
