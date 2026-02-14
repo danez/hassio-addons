@@ -1,10 +1,7 @@
-build_from:
-  aarch64: "ghcr.io/hassio-addons/debian-base:9.2.0@sha256:f97dc1d0f6960b8445746922fa03e73598eef7eca1bb98357b9f63d32ae22fce"
-  amd64: "ghcr.io/hassio-addons/debian-base:9.2.0@sha256:f97dc1d0f6960b8445746922fa03e73598eef7eca1bb98357b9f63d32ae22fce"
 labels:
-  org.opencontainers.image.title: "Home Assistant Add-on: AFFiNE"
+  org.opencontainers.image.title: "Home Assistant App: AFFiNE"
   org.opencontainers.image.description:
-    "Home Assistant Add-on that runs AFFiNE self-hosted."
+    "Home Assistant App that runs AFFiNE self-hosted."
   org.opencontainers.image.source: "https://github.com/danez/hassio-addons/tree/main/affine"
   org.opencontainers.image.licenses: "MIT"
 args:

@@ -71,16 +71,6 @@
       "depNameTemplate": "AFFiNE",
       "packageNameTemplate": "toeverything/AFFiNE",
       "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "description": "Update hassio base image",
-      "managerFilePatterns": ["//build.yaml$/"],
-      "matchStrings": ["\"ghcr.io/hassio-addons/base:(?<currentValue>.+?)\""],
-      "datasourceTemplate": "docker",
-      "depNameTemplate": "ghcr.io/hassio-addons/base",
-      "packageNameTemplate": "ghcr.io/hassio-addons/base",
-      "versioningTemplate": "semver"
     }
   ]
 }
