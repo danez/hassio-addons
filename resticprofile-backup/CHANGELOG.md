@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency ncurses-terminfo-base to v6.5_p20251123-r0 (#55)
+
 - update dependency talloc to v2.4.3-r0 (#56)
 
 - update dependency zstd-libs to v1.5.7-r2 (#57)
