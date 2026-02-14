@@ -13,7 +13,7 @@ RUN apk add --no-cache \
     cifs-utils=7.3-r0 \
     # pg-client
     lz4-libs=1.10.0-r0 \
-    libpq=17.7-r0 \
+    libpq=18.1-r0 \
     ncurses-terminfo-base=6.5_p20250503-r0 \
     libncursesw=6.5_p20251123-r0 \
     readline=8.2.13-r1 \
