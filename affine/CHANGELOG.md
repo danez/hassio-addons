@@ -1,5 +1,7 @@
 # Unreleased
 
+- update node.js to v22.22.0 (#51)
+
 - update dependency affine to v0.26.2 (#48)
 
 # 2.0.0
