@@ -1,4 +1,4 @@
-# Unreleased
+# 1.4.0
 
 - update ghcr.io/hassio-addons/base docker tag to v20 (#52)
 - update dependency ncurses-terminfo-base to v6.5_p20251123-r0 (#55)
