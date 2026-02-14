@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency cifs-utils to v7.4-r0 (#58)
+
 - update dependency libwbclient to v4.22.6-r0 (#59)
 
 - update dependency readline to v8.3.1-r0 (#60)
