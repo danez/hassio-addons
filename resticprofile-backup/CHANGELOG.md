@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency yq-go to v4.49.2-r3 (#61)
+
 - update dependency libpq to v18 (#62)
 
 - update dependency libncursesw to v6.5_p20251123-r0 (#53)
