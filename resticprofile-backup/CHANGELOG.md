@@ -1,5 +1,7 @@
 # Unreleased
 
+- update dependency zstd-libs to v1.5.7-r2 (#57)
+
 - update dependency cifs-utils to v7.4-r0 (#58)
 
 - update dependency libwbclient to v4.22.6-r0 (#59)
