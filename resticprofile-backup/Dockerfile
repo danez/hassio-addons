@@ -18,7 +18,7 @@ RUN apk add --no-cache \
     libncursesw=6.5_p20251123-r0 \
     readline=8.3.1-r0 \
     zstd-libs=1.5.7-r2 \
-    postgresql17-client=17.8-r0 \
+    postgresql18-client=18.2-r0 \
     # yq
     yq-go=4.49.2-r3 \
     && yq --version
