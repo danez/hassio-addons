@@ -1,3 +1,7 @@
+# Unreleased
+
+- update postgresql (#63)
+
 # 1.4.0
 
 - update ghcr.io/hassio-addons/base docker tag to v20 (#52)
