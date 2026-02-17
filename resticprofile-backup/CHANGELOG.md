@@ -1,6 +1,6 @@
-# Unreleased
+# 1.4.1
 
-- update postgresql (#63)
+- Updated PostgreSQL client from version 17 to version 18.2. (#63) (#64)
 
 # 1.4.0
 
