@@ -1,3 +1,7 @@
+# Unreleased
+
+- update dependency rclone to v1.73.1 (#65)
+
 # 1.4.1
 
 - Updated PostgreSQL client from version 17 to version 18.2. (#63) (#64)
