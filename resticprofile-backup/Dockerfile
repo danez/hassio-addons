@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     # Install cifs-utils and its dependencies for SMB/CIFS support
     libcap-ng=0.8.5-r0 \
     talloc=2.4.3-r0 \
-    libwbclient=4.22.6-r0 \
+    libwbclient=4.22.8-r0 \
     cifs-utils=7.4-r0 \
     # pg-client
     lz4-libs=1.10.0-r0 \
