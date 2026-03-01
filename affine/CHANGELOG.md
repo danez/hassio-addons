@@ -1,9 +1,7 @@
-# Unreleased
+# 2.1.1
 
 - update dependency affine to v0.26.3 (#69)
-
 - update node.js to 465a8c8 (#70)
-
 - update node.js to 6fb3c29 (#67)
 
 # 2.1.0
