@@ -1,3 +1,7 @@
+# Unreleased
+
+- update node.js to v22.22.1 (#73)
+
 # 2.1.1
 
 - update dependency affine to v0.26.3 (#69)
