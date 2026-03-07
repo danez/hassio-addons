@@ -1,3 +1,7 @@
+# Unreleased
+
+- update dependency rclone to v1.73.2 (#74)
+
 # 1.4.2
 
 - update dependency libwbclient to v4.22.8-r0 (#68)
