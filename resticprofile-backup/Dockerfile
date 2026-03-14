@@ -20,7 +20,7 @@ RUN apk add --no-cache \
     zstd-libs=1.5.7-r2 \
     postgresql18-client=18.2-r0 \
     # yq
-    yq-go=4.49.2-r3 \
+    yq-go=4.49.2-r4 \
     && yq --version
 
 
