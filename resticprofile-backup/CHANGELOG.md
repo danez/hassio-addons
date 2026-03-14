@@ -1,5 +1,7 @@
 # Unreleased
 
+- update postgresql to v18.3-r0 (#76)
+
 - update dependency yq-go to v4.49.2-r4 (#75)
 
 - update dependency rclone to v1.73.2 (#74)
