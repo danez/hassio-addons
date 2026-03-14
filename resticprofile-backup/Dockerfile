@@ -13,12 +13,12 @@ RUN apk add --no-cache \
     cifs-utils=7.4-r0 \
     # pg-client
     lz4-libs=1.10.0-r0 \
-    libpq=18.2-r0 \
+    libpq=18.3-r0 \
     ncurses-terminfo-base=6.5_p20251123-r0 \
     libncursesw=6.5_p20251123-r0 \
     readline=8.3.1-r0 \
     zstd-libs=1.5.7-r2 \
-    postgresql18-client=18.2-r0 \
+    postgresql18-client=18.3-r0 \
     # yq
     yq-go=4.49.2-r4 \
     && yq --version
