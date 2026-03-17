@@ -1,5 +1,7 @@
 # Unreleased
 
+- update node.js to 285a78d (#78)
+
 - update node.js to c267102 (#77)
 
 - update node.js to v22.22.1 (#73)
