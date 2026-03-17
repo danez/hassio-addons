@@ -20,7 +20,7 @@ fi
 
 EOF
 
-FROM node:22.22.1-trixie-slim@sha256:c2671026455cdb2343f161fe4be26ef6bbace3127d77bb150845987c1eb14214 AS node
+FROM node:22.22.1-trixie-slim@sha256:285a78d9fdb7cd2e4a03639cc7bbf609755ce8c0aa4e3b00086211e3e86a7038 AS node
 
 FROM ghcr.io/hassio-addons/debian-base:9.2.0@sha256:f97dc1d0f6960b8445746922fa03e73598eef7eca1bb98357b9f63d32ae22fce
 
