@@ -1,9 +1,5 @@
 # 3.0.1
 
-- update home-assistant/builder action to v2026.03.2 (#79)
-
-# 3.0.0
-
 - update docker image to use new builder structure
 - update node.js to v22.22.2 (#81)
 

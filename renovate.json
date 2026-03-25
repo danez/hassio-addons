@@ -1,6 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "docker:pinDigests", ":configMigration"],
+  "extends": [
+    "config:recommended",
+    "docker:pinDigests",
+    ":configMigration",
+    "helpers:pinGitHubActionDigests"
+  ],
   "packageRules": [
     {
       "matchFileNames": ["**/Dockerfile", "**/build.yaml"],
