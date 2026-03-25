@@ -1,3 +1,7 @@
+# 2.1.3
+
+- update ghcr.io/toeverything/affine docker tag to v0.26.4 (#83)
+
 # 2.1.2
 
 - update home-assistant/builder action to v2026.03.2 (#79)
