@@ -1,9 +1,10 @@
-# Home Assistant Add-on: AFFiNE
+# Home Assistant App: AFFiNE
 
-_Run AFFiNE as Home Assistant Add-On._
+_Run AFFiNE as Home Assistant App._
 
 > Requires a PostgreSQL database running with vectorchord. I recommend running
-> [this Add-On](https://github.com/alexbelgium/hassio-addons/tree/master/postgres_17) from alexbelgium.
+> [this App](https://github.com/alexbelgium/hassio-addons/tree/master/postgres_17)
+> from alexbelgium.
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]

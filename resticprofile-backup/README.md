@@ -1,4 +1,4 @@
-# Home Assistant Add-on: Resticprofile Backup
+# Home Assistant App: Resticprofile Backup
 
 _Allows resticprofile configs for custom backups._
 

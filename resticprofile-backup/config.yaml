@@ -79,4 +79,4 @@ schema:
       username: "str?"
       password: "str?"
       smb_version: "str?"
-image: "ghcr.io/danez/{arch}-addon-resticprofile-backup"
+image: "ghcr.io/danez/app-resticprofile-backup"

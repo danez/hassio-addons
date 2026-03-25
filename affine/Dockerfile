@@ -1,18 +1,17 @@
-ARG BUILD_AFFINE_VERSION
-FROM ghcr.io/toeverything/affine:${BUILD_AFFINE_VERSION} AS affine
+ARG AFFINE_VERSION=0.26.3
+FROM ghcr.io/toeverything/affine:${AFFINE_VERSION} AS affine
 
-ARG BUILD_ARCH
+ARG TARGETARCH
 
 RUN <<EOF
 set -eu
-
 # Remove unneeded native bindings for other architectures
 rm -rf /app/dist/server-native.armv7.node
 
 # Remove source maps to reduce final image size
 rm -rf /app/dist/main.js.map /app/src /app/static/js/*.js.map /app/static/mobile/js/*.js.map /app/static/admin/js/*.js.map
 
-if [ "${BUILD_ARCH}" = "aarch64" ]; then
+if [ "${TARGETARCH}" = "arm64" ]; then
     rm -rf /app/dist/server-native.x64.node
 else
     rm -rf /app/dist/server-native.arm64.node
@@ -31,11 +30,8 @@ COPY --from=node /opt /opt
 COPY --from=affine /app /app
 WORKDIR /app
 
-# Re-declare ARG for final stage (ARGs don't persist across stages)
-ARG BUILD_AFFINE_VERSION
-
 RUN <<EOF
-set -euo pipefail
+set -eu
 # Install dependencies for Affine
 # Also install redis
 apt-get update
@@ -58,3 +54,10 @@ EXPOSE 3010
 
 # Copy root filesystem
 COPY rootfs /
+
+LABEL \
+    io.hass.type="addon" \
+    org.opencontainers.image.title="Home Assistant App: AFFiNE" \
+    org.opencontainers.image.description="Home Assistant App that runs AFFiNE self-hosted." \
+    org.opencontainers.image.source="https://github.com/danez/hassio-addons/tree/main/affine" \
+    org.opencontainers.image.licenses="MIT"
