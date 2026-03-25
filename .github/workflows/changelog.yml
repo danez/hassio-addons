@@ -65,8 +65,8 @@ jobs:
             [ -z "$f" ] && continue
             # get top-level directory (first path component)
             top=$(echo "$f" | sed -E 's|^([^/.]+).*|\1|')
-            # only include if it's a directory in the repo (exists or will exist)
-            if [ -d "$top" ] || [ -f "$top" ] || true; then
+            # only include addon directories
+            if [ -d "$top" ] && [ -f "$top/config.yaml" ]; then
               case " $addons " in
                 *" $top "*) ;;
                 *) addons="$addons $top";;
@@ -80,7 +80,7 @@ jobs:
           echo "addons=$addons" >> $GITHUB_OUTPUT
           echo "Found addons: $addons"
 
-      - name: Update changelogs for each addon
+      - name: Update addon versions and changelogs
         if: steps.skip.outputs.skip != 'true'
         id: update
         run: |
@@ -88,65 +88,84 @@ jobs:
           IFS=' ' read -r -a ADDON_ARRAY <<< "${{ steps.addons.outputs.addons }}"
           PR_TITLE="${{ github.event.pull_request.title }}"
           PR_NUM="${{ github.event.pull_request.number }}"
+
+          if echo "$PR_TITLE" | grep -Eiq '^[[:space:]]*feat(\([^)]+\))?:'; then
+            BUMP_TYPE="minor"
+          else
+            BUMP_TYPE="patch"
+          fi
+
           # Strip conventional commit prefix (feat:, fix(scope):, chore!, etc.)
-          CLEAN_TITLE="$(echo "$PR_TITLE" | sed -E 's/^[[:space:]]*(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert|release|chore|deps)(\([^)]+\))?(!)?:[[:space:]]*//I')"
+          CLEAN_TITLE="$(echo "$PR_TITLE" | sed -E 's/^[[:space:]]*(feat|fix|chore|docs|style|refactor|perf|test|build|ci|revert|release|deps)(\([^)]+\))?(!)?:[[:space:]]*//I')"
+          if [ "$CLEAN_TITLE" = "$PR_TITLE" ]; then
+            CLEAN_TITLE="$PR_TITLE"
+          fi
           ENTRY="- ${CLEAN_TITLE} (#${PR_NUM})"
           echo "PR title: $PR_TITLE"
+          echo "Version bump: $BUMP_TYPE"
           echo "Cleaned title: $CLEAN_TITLE"
           echo "Entry to add: $ENTRY"
           changed_any=false
 
           for addon in "${ADDON_ARRAY[@]}"; do
             [ -z "$addon" ] && continue
-            # Skip non-directory-ish names that are single files at root (optional)
-            # If you want to only process known addon directories, filter here.
-            # We will look for a changelog file inside the addon directory.
-            # Try several common changelog filenames:
-            file="$addon/CHANGELOG.md"
-            if [ -f "$file" ]; then
-              echo "Updating existing changelog: $file"
-              tmp="$(mktemp)"
-              # If file contains a "# Unreleased" or "#Unreleased" header, insert entry after header
-              if grep -i -q '^#\s*Unreleased' "$file"; then
-                # Insert entry immediately after first Unreleased header and an optional blank line
-                awk -v entry="$ENTRY" 'BEGIN{printed=0;done=0}
-                  {
-                    if(!printed && tolower($0) ~ /^#\s*unreleased/){
-                      print $0
-                      print ""
-                      print entry
-                      printed=1
-                      next
-                    }
-                    print $0
-                  }' "$file" > "$tmp"
-              else
-                # Prepend a "# Unreleased" section with the entry
-                {
-                  echo "# Unreleased"
-                  echo ""
-                  echo "$ENTRY"
-                  echo ""
-                  cat "$file"
-                } > "$tmp"
-              fi
-              mv "$tmp" "$file"
-              git add "$file"
-              changed_any=true
-              break
+            config_file="$addon/config.yaml"
+            changelog_file="$addon/CHANGELOG.md"
+
+            if ! [ -f "$config_file" ]; then
+              echo "Skipping $addon: missing config.yaml"
+              continue
             fi
 
-            # If no changelog file was found, create CHANGELOG.md with Unreleased section
-            if ! [ -f "$addon/CHANGELOG.md" ] && [ -d "$addon" ]; then
-              echo "No changelog for $addon found"
+            echo "Updating addon: $addon"
+
+            current_version="$(sed -nE 's/^version:[[:space:]]*["'\'' ]*([0-9]+\.[0-9]+\.[0-9]+)["'\'' ]*$/\1/p' "$config_file" | head -n 1)"
+            if [ -z "$current_version" ]; then
+              echo "Skipping $addon: could not determine version from $config_file"
+              continue
             fi
+
+            IFS='.' read -r major minor patch <<< "$current_version"
+            if [ "$BUMP_TYPE" = "minor" ]; then
+              minor=$((minor + 1))
+              patch=0
+            else
+              patch=$((patch + 1))
+            fi
+            new_version="$major.$minor.$patch"
+
+            sed -E -i.bak "s/^(version:[[:space:]]*[\"']?)[0-9]+\.[0-9]+\.[0-9]+([\"']?.*)$/\\1${new_version}\\2/" "$config_file"
+            rm -f "$config_file.bak"
+
+            echo "New version for $addon: $new_version"
+
+            if [ -f "$changelog_file" ]; then
+              tmp="$(mktemp)"
+              {
+                echo "# $new_version"
+                echo ""
+                echo "$ENTRY"
+                echo ""
+                cat "$changelog_file"
+              } > "$tmp"
+              mv "$tmp" "$changelog_file"
+            else
+              {
+                echo "# $new_version"
+                echo ""
+                echo "$ENTRY"
+              } > "$changelog_file"
+            fi
+
+            git add "$config_file" "$changelog_file"
+            changed_any=true
           done
 
           if [ "$changed_any" = "true" ]; then
-            git commit -m "chore(changelog): add entry"
+            git commit -m "chore(changelog): bump addon versions"
             # Push back to the PR branch
             git push origin "HEAD:${{ github.head_ref }}"
-            echo "Pushed changelog updates."
+            echo "Pushed addon version and changelog updates."
           else
-            echo "No changelog updates needed."
+            echo "No addon updates needed."
           fi

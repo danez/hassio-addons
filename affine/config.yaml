@@ -1,7 +1,7 @@
 name: AFFiNE
-version: "2.1.1"
+version: "2.1.2"
 slug: affine
-description: Run AFFiNE as Home Assistant Add-On
+description: Run AFFiNE as Home Assistant App
 url: "https://github.com/danez/hassio-addons/tree/main/affine"
 hassio_api: true
 arch:
@@ -31,4 +31,4 @@ schema:
   DB_PORT: "port"
   DB_DATABASE_NAME: "str"
   TURNSTILE_SITE_KEY: "str?"
-image: "ghcr.io/danez/{arch}-addon-affine"
+image: "ghcr.io/danez/app-affine"

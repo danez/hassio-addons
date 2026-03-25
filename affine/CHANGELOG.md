@@ -1,12 +1,11 @@
-# Unreleased
+# 2.1.2
 
+- update home-assistant/builder action to v2026.03.2 (#79)
+
+# 3.0.0
+
+- update docker image to use new builder structure
 - update node.js to v22.22.2 (#81)
-
-- update node.js to 285a78d (#78)
-
-- update node.js to c267102 (#77)
-
-- update node.js to v22.22.1 (#73)
 
 # 2.1.1
 

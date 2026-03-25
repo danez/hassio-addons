@@ -1,12 +1,13 @@
-# Unreleased
+# 1.4.3
 
+- update home-assistant/builder action to v2026.03.2 (#79)
+
+# 2.0.0
+
+- update docker image to use new builder structure
 - update dependency rclone to v1.73.3 (#80)
-
 - update postgresql to v18.3-r0 (#76)
-
 - update dependency yq-go to v4.49.2-r4 (#75)
-
-- update dependency rclone to v1.73.2 (#74)
 
 # 1.4.2
 
