@@ -1,3 +1,7 @@
+# 1.4.3
+
+- update home-assistant/builder action to v2026.03.2 (#79)
+
 # 2.0.0
 
 - update docker image to use new builder structure
