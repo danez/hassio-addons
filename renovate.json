@@ -22,7 +22,7 @@
       "description": "Update apk packages in Dockerfiles",
       "managerFilePatterns": ["//Dockerfile$/"],
       "matchStrings": [
-        "\\s{2}(?<depName>\\S+?)=(?<currentValue>.?)(\\s\\\\)?\\n"
+        "\\s{2}(?<depName>\\S+?)=(?<currentValue>.+?)(\\s\\\\)?\\n"
       ],
       "datasourceTemplate": "repology",
       "packageNameTemplate": "alpine_3_23/{{{depName}}}",
