@@ -20,9 +20,9 @@
     {
       "customType": "regex",
       "description": "Update apk packages in Dockerfiles",
-      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
+      "managerFilePatterns": ["//Dockerfile$/"],
       "matchStrings": [
-        "\\s{2}(?<depName>\\S+?)=(?<currentValue>[0-9.-_a-zA-Z]+?)(\\s\\\\)?\\n"
+        "\\s{2}(?<depName>\\S+?)=(?<currentValue>.?)(\\s\\\\)?\\n"
       ],
       "datasourceTemplate": "repology",
       "packageNameTemplate": "alpine_3_23/{{{depName}}}",
