@@ -1,3 +1,7 @@
+# 2.1.3
+
+- pin ghcr.io/toeverything/affine docker tag to 725aace (#82)
+
 # 2.1.2
 
 - update home-assistant/builder action to v2026.03.2 (#79)
