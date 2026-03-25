@@ -27,10 +27,8 @@
     {
       "customType": "regex",
       "description": "Update restic",
-      "managerFilePatterns": ["//build.yaml$/"],
-      "matchStrings": [
-        "BUILD_RESTIC_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
-      ],
+      "managerFilePatterns": ["//Dockerfile$/"],
+      "matchStrings": ["RESTIC_VERSION=(?<currentValue>.+?)\\n"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "restic",
       "packageNameTemplate": "restic/restic",
@@ -39,10 +37,8 @@
     {
       "customType": "regex",
       "description": "Update resticprofile",
-      "managerFilePatterns": ["//build.yaml$/"],
-      "matchStrings": [
-        "BUILD_RESTICPROFILE_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
-      ],
+      "managerFilePatterns": ["//Dockerfile$/"],
+      "matchStrings": ["RESTICPROFILE_VERSION=(?<currentValue>.+?)\\n"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "resticprofile",
       "packageNameTemplate": "creativeprojects/resticprofile",
@@ -51,25 +47,11 @@
     {
       "customType": "regex",
       "description": "Update rclone",
-      "managerFilePatterns": ["//build.yaml$/"],
-      "matchStrings": [
-        "BUILD_RCLONE_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
-      ],
+      "managerFilePatterns": ["//Dockerfile$/"],
+      "matchStrings": ["RCLONE_VERSION=(?<currentValue>.+?)\\n"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "rclone",
       "packageNameTemplate": "rclone/rclone",
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "description": "Update AFFiNE",
-      "managerFilePatterns": ["//build.yaml$/"],
-      "matchStrings": [
-        "BUILD_AFFINE_VERSION:\\s?\"?(?<currentValue>.+?)\"?\\n"
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "AFFiNE",
-      "packageNameTemplate": "toeverything/AFFiNE",
       "versioningTemplate": "semver"
     }
   ]

@@ -1,5 +1,4 @@
-ARG AFFINE_VERSION=0.26.3
-FROM ghcr.io/toeverything/affine:${AFFINE_VERSION} AS affine
+FROM ghcr.io/toeverything/affine:0.26.4@sha256:638893c8f62bb7fd0b3028863096f2b057e3c7ca2ac5163574c333698a331f33 AS affine
 
 ARG TARGETARCH
 

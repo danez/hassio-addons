@@ -1,4 +1,4 @@
-# 2.1.2
+# 3.0.1
 
 - update home-assistant/builder action to v2026.03.2 (#79)
 
