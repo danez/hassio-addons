@@ -1,3 +1,7 @@
+# 3.0.2
+
+- update ghcr.io/hassio-addons/debian-base docker tag to v9.3.0 (#87)
+
 # 3.0.1
 
 - update docker image to use new builder structure
