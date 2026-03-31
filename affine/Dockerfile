@@ -20,7 +20,7 @@ EOF
 
 FROM node:22.22.2-trixie-slim@sha256:fbd78b2335c6c9894466257f6efcf285593bd449dd8cd525e9252219ca706165 AS node
 
-FROM ghcr.io/hassio-addons/debian-base:9.2.0@sha256:f97dc1d0f6960b8445746922fa03e73598eef7eca1bb98357b9f63d32ae22fce
+FROM ghcr.io/hassio-addons/debian-base:9.3.0@sha256:01448978e65c3320030d97e9c9d59ed93e4173d54696ab4bc3eabe4439bff1ee
 
 # NODE
 COPY --from=node /usr/local /usr/local
