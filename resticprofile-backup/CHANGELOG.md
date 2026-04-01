@@ -1,3 +1,7 @@
+# 2.0.1
+
+- update ghcr.io/hassio-addons/base docker tag to v20.0.2 (#86)
+
 # 2.0.0
 
 - update docker image to use new builder structure
