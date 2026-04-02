@@ -1,3 +1,7 @@
+# 3.0.3
+
+- update ghcr.io/toeverything/affine docker tag to v0.26.5 (#90)
+
 # 3.0.2
 
 - update ghcr.io/hassio-addons/debian-base docker tag to v9.3.0 (#87)
