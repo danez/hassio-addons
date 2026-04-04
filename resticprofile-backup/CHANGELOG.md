@@ -1,3 +1,7 @@
+# 2.0.2
+
+- update dependency resticprofile to v0.33.0 (#91)
+
 # 2.0.1
 
 - update ghcr.io/hassio-addons/base docker tag to v20.0.2 (#86)
