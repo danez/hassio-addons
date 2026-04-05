@@ -1,3 +1,7 @@
+# 3.0.4
+
+- update ghcr.io/toeverything/affine docker tag to v0.26.6 (#92)
+
 # 3.0.3
 
 - update ghcr.io/toeverything/affine docker tag to v0.26.5 (#90)
