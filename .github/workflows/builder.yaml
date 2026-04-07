@@ -31,7 +31,7 @@ jobs:
 
       - name: Find app directories
         id: apps
-        uses: home-assistant/actions/helpers/find-addons@5752577ea7cc5aefb064b0b21432f18fe4d6ba90 # master
+        uses: home-assistant/actions/helpers/find-addons@f6f29a7ee3fa0eccadf3620a7b9ee00ab54ec03b # master
 
       - name: Filter changed apps
         id: filter
