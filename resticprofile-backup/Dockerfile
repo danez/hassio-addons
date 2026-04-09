@@ -10,7 +10,7 @@ ARG RCLONE_VERSION=1.73.4
 RUN <<EOF
 set -eu
 apk add --no-cache \
-  lsblk=2.41.2-r0 \
+  lsblk=2.41.4-r0 \
   libcap-ng=0.8.5-r0 \
   talloc=2.4.3-r0 \
   libwbclient=4.22.8-r0 \
