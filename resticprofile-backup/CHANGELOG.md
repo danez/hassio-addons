@@ -1,3 +1,7 @@
+# 2.0.4
+
+- update dependency lsblk to v2.41.4-r0 (#96)
+
 # 2.0.3
 
 - update dependency rclone to v1.73.4 (#95)
