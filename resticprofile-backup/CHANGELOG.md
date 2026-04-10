@@ -1,3 +1,7 @@
+# 2.0.5
+
+- update ghcr.io/hassio-addons/base docker tag to v20.0.3 (#97)
+
 # 2.0.4
 
 - update dependency lsblk to v2.41.4-r0 (#96)
