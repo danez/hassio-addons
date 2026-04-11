@@ -22,7 +22,7 @@ apk add --no-cache \
   readline=8.3.1-r0 \
   zstd-libs=1.5.7-r2 \
   postgresql18-client=18.3-r0 \
-  yq-go=4.49.2-r4
+  yq-go=4.49.2-r5
 yq --version
 
 wget -qO /tmp/resticprofile.tar.gz "https://github.com/creativeprojects/resticprofile/releases/download/v${RESTICPROFILE_VERSION}/resticprofile_no_self_update_${RESTICPROFILE_VERSION}_linux_${TARGETARCH}.tar.gz"
