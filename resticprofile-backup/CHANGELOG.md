@@ -1,3 +1,7 @@
+# 2.0.7
+
+- update ghcr.io/hassio-addons/base docker tag to v20.0.4 (#99)
+
 # 2.0.6
 
 - update dependency yq-go to v4.49.2-r5 (#98)
