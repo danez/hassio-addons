@@ -1,4 +1,4 @@
-FROM ghcr.io/hassio-addons/base:20.0.3@sha256:d3d6ad6cb484003393db58fd11a31427adfcfebfe3bc5de80efcb11aaa102e3a
+FROM ghcr.io/hassio-addons/base:20.0.4@sha256:98eb32bdbec80a89568fce357883f78632f09b99a77a5ccc17d1f093d9d685c3
 
 # Copy root filesystem
 COPY rootfs /
