@@ -1,3 +1,7 @@
+# 2.0.9
+
+- update dependency rclone to v1.73.5 (#101)
+
 # 2.0.8
 
 - update dependency resticprofile to v0.33.1 (#100)
