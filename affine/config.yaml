@@ -1,5 +1,5 @@
 name: AFFiNE
-version: "3.0.5"
+version: "3.0.6"
 slug: affine
 description: Run AFFiNE as Home Assistant App
 url: "https://github.com/danez/hassio-addons/tree/main/affine"
