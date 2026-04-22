@@ -1,3 +1,7 @@
+# 3.0.6
+
+- update node.js to 2d9f5c7 (#103)
+
 # 3.0.5
 
 - update node.js to 76043ed (#93)
