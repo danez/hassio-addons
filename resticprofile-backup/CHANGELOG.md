@@ -1,3 +1,7 @@
+# 2.0.12
+
+- update ghcr.io/hassio-addons/base docker tag to v20.1.1 (#105)
+
 # 2.0.11
 
 - update dependency rclone to v1.74.0 (#104)
