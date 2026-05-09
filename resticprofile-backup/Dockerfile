@@ -10,20 +10,13 @@ ARG RCLONE_VERSION=1.74.1
 RUN <<EOF
 set -eu
 apk add --no-cache \
-  lsblk=2.41.4-r0 \
-  libcap-ng=0.8.5-r0 \
-  talloc=2.4.3-r0 \
-  libwbclient=4.22.8-r0 \
+  ca-certificates=20260413-r0 \
   cifs-utils=7.4-r0 \
-  lz4-libs=1.10.0-r0 \
-  libpq=18.3-r0 \
-  ncurses-terminfo-base=6.5_p20251123-r0 \
-  libncursesw=6.5_p20251123-r0 \
-  readline=8.3.1-r0 \
-  zstd-libs=1.5.7-r2 \
+  lsblk=2.41.4-r0 \
+  openssh-client=10.2_p1-r0 \
   postgresql18-client=18.3-r0 \
+  tzdata=2026b-r0 \
   yq-go=4.49.2-r5
-yq --version
 
 wget -qO /tmp/resticprofile.tar.gz "https://github.com/creativeprojects/resticprofile/releases/download/v${RESTICPROFILE_VERSION}/resticprofile_no_self_update_${RESTICPROFILE_VERSION}_linux_${TARGETARCH}.tar.gz"
 mkdir -p /tmp/resticprofile
