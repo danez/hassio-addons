@@ -18,6 +18,8 @@ apk add --no-cache \
   tzdata=2026b-r0 \
   yq-go=4.49.2-r5
 
+yq --version
+
 wget -qO /tmp/resticprofile.tar.gz "https://github.com/creativeprojects/resticprofile/releases/download/v${RESTICPROFILE_VERSION}/resticprofile_no_self_update_${RESTICPROFILE_VERSION}_linux_${TARGETARCH}.tar.gz"
 mkdir -p /tmp/resticprofile
 tar -xzf /tmp/resticprofile.tar.gz -C /tmp/resticprofile
