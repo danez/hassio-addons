@@ -1,3 +1,8 @@
+# 2.1.0
+
+- Install openssh-client, ca-certificates and tzdata in container to support
+  sftp in backups (#110)
+
 # 2.0.13
 
 - update dependency rclone to v1.74.1 (#106)
