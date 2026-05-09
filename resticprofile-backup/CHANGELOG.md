@@ -1,3 +1,7 @@
+# 2.1.1
+
+- Fix openssh package name
+
 # 2.1.0
 
 - Install openssh-client, ca-certificates and tzdata in container to support
