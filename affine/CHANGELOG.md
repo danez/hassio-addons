@@ -1,3 +1,7 @@
+# 3.0.8
+
+- update node.js to 55931e7 (#108)
+
 # 3.0.7
 
 - update node.js to 309e8c9 (#107)
