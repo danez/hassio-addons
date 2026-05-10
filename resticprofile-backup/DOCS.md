@@ -33,18 +33,33 @@ if it is initialized and automatically call `restic init` if not.
 The following Home Assistant folders are mounted (read-only) inside the app
 container:
 
-- `/addon_configs`
-- `/addons`
-- `/backup`
-- `/data`
-- `/homeassistant`
-- `/media`
-- `/ssl`
+- `/addon_configs`: configuration folders for all installed apps. This is useful
+  when you want this app to back up other apps' configuration data. The current
+  app's own files are also visible here in a folder named like
+  `/addon_configs/xxx_resticprofile-backup/`.
+- `/addons`: locally installed apps, for example apps placed in the Home
+  Assistant `addons` folder.
+- `/backup`: Home Assistant backup archives created by Home Assistant or other
+  apps.
+- `/data`: this app's internal data directory.
+- `/homeassistant`: the main Home Assistant configuration directory. This is the
+  folder commonly shown as `/config` inside Home Assistant itself and contains
+  files such as `configuration.yaml`, automations, scripts, custom components,
+  and similar Home Assistant configuration data.
+- `/media`: the Home Assistant media folder.
+- `/ssl`: Home Assistant SSL certificates.
 
-The following Home Assistant folders are mounted (read-write) inside the add-on
+The following Home Assistant folders are mounted (read-write) inside the app
 container:
 
-- `/share`
+- `/config`: this app's own configuration folder. The generated `password.txt`,
+  `profiles.yaml.example`, and your `profiles.yaml` live here. On the Home
+  Assistant host this is the same data that appears under
+  `/addon_configs/xxx_resticprofile-backup/`. This is **not** the main Home
+  Assistant configuration directory; use `/homeassistant` for that.
+- `/share`: the Home Assistant shared folder. This can be used as a writable
+  staging area for files created by `run-before` commands, database dumps, or
+  other temporary backup sources.
 
 ### Mounting Local Disks
 
@@ -112,7 +127,7 @@ Only set this if you encounter compatibility or performance issues.
 
 ### PostgreSQL Backups
 
-The add-on includes PostgreSQL client tools such as `pg_dump`, `pg_dumpall` and
+The app includes PostgreSQL client tools such as `pg_dump`, `pg_dumpall` and
 `psql`, which you can use to back up and manage PostgreSQL databases. For usage
 details, refer to the
 [PostgreSQL documentation](https://www.postgresql.org/docs/current/reference-client.html).
@@ -122,9 +137,9 @@ Example profiles.yaml:
 > **Note:** The backup commands reference a `.pgpass` file for PostgreSQL
 > authentication. To create this file, add a line for each database in the
 > format: `hostname:port:database:username:password` Save the file as `.pgpass`
-> in your add-on config directory (e.g.,
+> in your app config directory (e.g.,
 > `/addon_configs/371a6e26_resticprofile-backup/.pgpass`) and set its
-> permissions to be readable only by the add-on for security.
+> permissions to be readable only by the app for security.
 >
 > For more details, see the
 > [PostgreSQL password file documentation](https://www.postgresql.org/docs/current/libpq-pgpass.html).
