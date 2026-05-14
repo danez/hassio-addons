@@ -1,3 +1,7 @@
+# 2.1.2
+
+- update dependency postgresql18-client to v18.4-r0 (#112)
+
 # 2.1.1
 
 - Fix openssh package name
