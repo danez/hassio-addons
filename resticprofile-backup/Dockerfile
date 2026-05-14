@@ -14,7 +14,7 @@ apk add --no-cache \
   cifs-utils=7.4-r0 \
   lsblk=2.41.4-r0 \
   openssh-client-default=10.2_p1-r0 \
-  postgresql18-client=18.3-r0 \
+  postgresql18-client=18.4-r0 \
   tzdata=2026b-r0 \
   yq-go=4.49.2-r5
 
