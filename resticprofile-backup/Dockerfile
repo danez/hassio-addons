@@ -16,7 +16,7 @@ apk add --no-cache \
   openssh-client-default=10.2_p1-r0 \
   postgresql18-client=18.4-r0 \
   tzdata=2026b-r0 \
-  yq-go=4.49.2-r5
+  yq-go=4.49.2-r6
 
 yq --version
 
