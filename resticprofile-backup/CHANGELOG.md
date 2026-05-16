@@ -1,3 +1,7 @@
+# 2.1.3
+
+- update dependency yq-go to v4.49.2-r6 (#113)
+
 # 2.1.2
 
 - update dependency postgresql18-client to v18.4-r0 (#112)
