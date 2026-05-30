@@ -1,4 +1,4 @@
-FROM ghcr.io/toeverything/affine:0.26.6@sha256:d1c65f5d545d3e0a51c1696c482739915fbf402ba37cefb31539a1de095531e8 AS affine
+FROM ghcr.io/toeverything/affine:0.26.7@sha256:74baac632031260f8c1c8ba34d9734b5addba0b8e72d6d9b9721e39f77738e94 AS affine
 
 ARG TARGETARCH
 
