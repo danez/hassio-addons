@@ -1,3 +1,7 @@
+# 2.1.5
+
+- update dependency rclone to v1.74.3 (#119)
+
 # 2.1.4
 
 - update dependency rclone to v1.74.2 (#115)
