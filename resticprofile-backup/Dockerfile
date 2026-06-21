@@ -10,7 +10,7 @@ ARG RCLONE_VERSION=1.74.3
 RUN <<EOF
 set -eu
 apk add --no-cache \
-  ca-certificates=20260413-r0 \
+  ca-certificates=20260611-r0 \
   cifs-utils=7.4-r0 \
   lsblk=2.41.4-r0 \
   openssh-client-default=10.2_p1-r0 \
