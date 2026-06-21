@@ -1,3 +1,7 @@
+# 2.1.6
+
+- update dependency ca-certificates to v20260611 (#126)
+
 # 2.1.5
 
 - update dependency rclone to v1.74.3 (#119)
