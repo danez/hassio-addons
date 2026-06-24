@@ -1,22 +1,22 @@
-FROM ghcr.io/hassio-addons/base:20.1.1@sha256:adeb91a5aa677b28df404951bf49b9939cce155232452e12a079b54b3ebd7aec
+FROM ghcr.io/hassio-addons/base:21.0.0@sha256:26c14772d1eb72c8aa7f0b6866a2bc13ada705f77b8c263fcfa09116a5e00e25
 
 # Copy root filesystem
 COPY rootfs /
 
 ARG TARGETARCH
 ARG RESTICPROFILE_VERSION=0.33.1
-ARG RESTIC_VERSION=0.18.1
+ARG RESTIC_VERSION=0.19.0
 ARG RCLONE_VERSION=1.74.3
 RUN <<EOF
 set -eu
 apk add --no-cache \
-  ca-certificates=20260413-r0 \
-  cifs-utils=7.4-r0 \
-  lsblk=2.41.4-r0 \
-  openssh-client-default=10.2_p1-r0 \
+  ca-certificates=20260611-r0 \
+  cifs-utils=7.5-r0 \
+  lsblk=2.42.1-r0 \
+  openssh-client-default=10.3_p1-r0 \
   postgresql18-client=18.4-r0 \
   tzdata=2026b-r0 \
-  yq-go=4.49.2-r6
+  yq-go=4.53.3-r0
 
 yq --version
 

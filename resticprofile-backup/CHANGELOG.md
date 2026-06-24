@@ -1,3 +1,9 @@
+# 2.2.0
+
+- update dependency restic to v0.19.0 (#122)
+- update dependency ca-certificates to v20260611 (#126)
+- update ghcr.io/hassio-addons/base docker tag to v21 (#127)
+
 # 2.1.5
 
 - update dependency rclone to v1.74.3 (#119)
