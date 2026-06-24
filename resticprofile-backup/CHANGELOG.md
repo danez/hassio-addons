@@ -1,3 +1,7 @@
+# 2.1.6
+
+- update dependency restic to v0.19.0 (#122)
+
 # 2.1.5
 
 - update dependency rclone to v1.74.3 (#119)
