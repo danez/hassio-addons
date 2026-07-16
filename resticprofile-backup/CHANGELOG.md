@@ -1,3 +1,7 @@
+# 2.2.1
+
+- update dependency tzdata to v2026c-r0 (#132)
+
 # 2.2.0
 
 - update dependency restic to v0.19.0 (#122)
