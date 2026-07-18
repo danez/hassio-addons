@@ -1,6 +1,7 @@
 # 3.0.13
 
 - update ghcr.io/toeverything/affine docker tag to v0.27.1 (#131)
+- update node.js to e6d9a38 (#128)
 
 # 3.0.12
 
