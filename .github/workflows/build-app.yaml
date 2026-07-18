@@ -80,7 +80,7 @@ jobs:
           version: ${{ needs.prepare.outputs.version }}
 
       - name: Scan built image with Grype
-        uses: anchore/scan-action@v7
+        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7
         id: scan
         with:
           image: ${{ matrix.image }}:${{ needs.prepare.outputs.version }}
