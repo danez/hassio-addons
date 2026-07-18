@@ -2,6 +2,7 @@
 
 - update dependency restic to v0.19.1 (#130)
 - update dependency rclone to v1.74.4 (#129)
+- update dependency tzdata to v2026c-r0 (#132)
 
 # 2.2.0
 
