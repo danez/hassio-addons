@@ -79,6 +79,14 @@ jobs:
           push: ${{ inputs.publish }}
           version: ${{ needs.prepare.outputs.version }}
 
+      - name: Scan built image with Grype
+        uses: anchore/scan-action@v7
+        with:
+          image: ${{ matrix.image }}:${{ needs.prepare.outputs.version }}
+          fail-build: true
+          severity-cutoff: high
+        continue-on-error: true
+
   manifest:
     name: Publish multi-arch manifest
     needs: [prepare, build]
