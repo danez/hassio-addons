@@ -81,11 +81,17 @@ jobs:
 
       - name: Scan built image with Grype
         uses: anchore/scan-action@v7
+        id: scan
         with:
           image: ${{ matrix.image }}:${{ needs.prepare.outputs.version }}
           fail-build: true
           severity-cutoff: high
         continue-on-error: true
+
+      - name: upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
 
   manifest:
     name: Publish multi-arch manifest
