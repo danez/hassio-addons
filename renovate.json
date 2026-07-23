@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "gitIgnoredAuthors": ["120286224+danez-bot@users.noreply.github.com"],
   "extends": [
     "config:recommended",
     "docker:pinDigests",
