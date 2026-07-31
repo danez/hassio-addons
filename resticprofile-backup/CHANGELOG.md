@@ -1,3 +1,7 @@
+# 2.2.2
+
+- update ghcr.io/hassio-addons/base docker tag to v21.0.1 (#142)
+
 # 2.2.1
 
 - update dependency restic to v0.19.1 (#130)
