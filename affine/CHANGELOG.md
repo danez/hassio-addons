@@ -1,3 +1,7 @@
+# 3.0.17
+
+- update node.js to 5b33302 (#145)
+
 # 3.0.16
 
 - update node.js to v22.23.2 (#140)
