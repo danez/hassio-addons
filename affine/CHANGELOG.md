@@ -1,3 +1,7 @@
+# 3.0.18
+
+- update node.js to db8a96a (#146)
+
 # 3.0.17
 
 - update node.js to 5b33302 (#145)
