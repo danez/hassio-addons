@@ -1,3 +1,7 @@
+# 2.2.4
+
+- update dependency postgresql18-client to v18.6-r0 (#147)
+
 # 2.2.3
 
 - update dependency rclone to v1.75.0 (#143)
