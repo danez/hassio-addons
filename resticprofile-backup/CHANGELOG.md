@@ -1,3 +1,7 @@
+# 2.2.5
+
+- update ghcr.io/hassio-addons/base docker tag to v21.0.2 (#148)
+
 # 2.2.4
 
 - update dependency postgresql18-client to v18.6-r0 (#147)
