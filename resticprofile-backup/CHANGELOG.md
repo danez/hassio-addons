@@ -1,3 +1,7 @@
+# 2.2.6
+
+- update ghcr.io/hassio-addons/base docker tag to v21.0.3 (#153)
+
 # 2.2.5
 
 - update ghcr.io/hassio-addons/base docker tag to v21.0.2 (#148)
