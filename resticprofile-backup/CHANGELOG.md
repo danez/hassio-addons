@@ -1,3 +1,7 @@
+# 2.2.8
+
+- update ghcr.io/hassio-addons/base docker tag to v21.0.4 (#155)
+
 # 2.2.7
 
 - update dependency openssh-client-default to v10.3_p1-r1 (#154)
