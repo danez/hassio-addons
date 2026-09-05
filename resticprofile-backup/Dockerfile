@@ -12,7 +12,7 @@ set -eu
 apk add --no-cache \
   ca-certificates=20260611-r0 \
   cifs-utils=7.5-r0 \
-  lsblk=2.42.1-r0 \
+  lsblk=2.42.3-r1 \
   openssh-client-default=10.3_p1-r1 \
   postgresql18-client=18.6-r0 \
   tzdata=2026c-r0 \
