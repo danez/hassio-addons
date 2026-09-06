@@ -1,3 +1,7 @@
+# 2.2.11
+
+- update dependency yq-go to v4.53.3-r1 (#158)
+
 # 2.2.10
 
 - update dependency lsblk to v2.42.3-r1 (#157)
