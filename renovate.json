@@ -15,49 +15,24 @@
     {
       "matchDepNames": ["libpq", "postgresql**"],
       "groupName": "postgresql"
+    },
+    {
+      "matchFileNames": ["**/Dockerfile"],
+      "matchDatasources": ["apk"],
+      "registryUrls": [
+        "https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=aarch64"
+      ]
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update apk packages in Dockerfiles",
-      "managerFilePatterns": ["//Dockerfile$/"],
+      "description": "Update _VERSION variables in Dockerfiles",
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "matchStrings": [
-        "\\s{2}(?<depName>\\S+?)=(?<currentValue>.+?)(\\s\\\\)?\\n"
+        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
       ],
-      "datasourceTemplate": "repology",
-      "packageNameTemplate": "alpine_3_24/{{{depName}}}",
-      "versioningTemplate": "loose"
-    },
-    {
-      "customType": "regex",
-      "description": "Update restic",
-      "managerFilePatterns": ["//Dockerfile$/"],
-      "matchStrings": ["RESTIC_VERSION=(?<currentValue>.+?)\\n"],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "restic",
-      "packageNameTemplate": "restic/restic",
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "description": "Update resticprofile",
-      "managerFilePatterns": ["//Dockerfile$/"],
-      "matchStrings": ["RESTICPROFILE_VERSION=(?<currentValue>.+?)\\n"],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "resticprofile",
-      "packageNameTemplate": "creativeprojects/resticprofile",
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "description": "Update rclone",
-      "managerFilePatterns": ["//Dockerfile$/"],
-      "matchStrings": ["RCLONE_VERSION=(?<currentValue>.+?)\\n"],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "rclone",
-      "packageNameTemplate": "rclone/rclone",
-      "versioningTemplate": "semver"
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ]
 }

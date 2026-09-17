@@ -4,8 +4,11 @@ FROM ghcr.io/hassio-addons/base:21.0.5@sha256:2329e9f61ecbfaa9a2b1b2b260b5a69287
 COPY rootfs /
 
 ARG TARGETARCH
+# renovate: datasource=github-releases depName=resticprofile packageName=creativeprojects/resticprofile
 ARG RESTICPROFILE_VERSION=0.33.1
+# renovate: datasource=github-releases depName=restic packageName=restic/restic
 ARG RESTIC_VERSION=0.19.1
+# renovate: datasource=github-releases depName=rclone packageName=rclone/rclone
 ARG RCLONE_VERSION=1.75.1
 RUN <<EOF
 set -eu
