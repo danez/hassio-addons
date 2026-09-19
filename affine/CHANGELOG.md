@@ -1,3 +1,7 @@
+# 3.0.23
+
+- update node.js to c5849ff (#162)
+
 # 3.0.22
 
 - update node.js to 2f13dd4 (#161)
