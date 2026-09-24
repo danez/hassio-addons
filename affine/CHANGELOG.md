@@ -1,3 +1,7 @@
+# 3.0.24
+
+- update node.js to v22.23.3 (#163)
+
 # 3.0.23
 
 - update node.js to c5849ff (#162)
