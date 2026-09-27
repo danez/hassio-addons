@@ -10,7 +10,7 @@
   "packageRules": [
     {
       "matchFileNames": ["**/Dockerfile", "**/build.yaml"],
-      "extends": [":semanticCommitTypeAll(fix)"]
+      "semanticCommitType": "fix"
     },
     {
       "matchDepNames": ["libpq", "postgresql**"],
