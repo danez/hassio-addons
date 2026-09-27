@@ -17,7 +17,6 @@
       "groupName": "postgresql"
     },
     {
-      "matchFileNames": ["**/Dockerfile"],
       "matchDatasources": ["apk"],
       "registryUrls": [
         "https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=aarch64"
