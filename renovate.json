@@ -26,6 +26,17 @@
   "customManagers": [
     {
       "customType": "regex",
+      "description": "Update pinned apk add packages in Dockerfiles",
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        "apk add[^\\n]*\\\\\\n(?:[ \\t]+[^\\n]*\\\\\\n)*[ \\t]+[^\\n]+",
+        "(?<depName>[a-zA-Z0-9][a-zA-Z0-9+_.-]*)=(?<currentValue>[^\\s\\\\]+)"
+      ],
+      "datasourceTemplate": "apk"
+    },
+    {
+      "customType": "regex",
       "description": "Update _VERSION variables in Dockerfiles",
       "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "matchStrings": [
