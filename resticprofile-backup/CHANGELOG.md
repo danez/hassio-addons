@@ -1,9 +1,6 @@
-# 2.2.14
-
-- update tzdata apk package to v2026d-r0 (#169)
-
 # 2.2.13
 
+- update tzdata apk package to v2026d-r0 (#169)
 - update ghcr.io/hassio-addons/base docker tag to v21.0.6 (#164)
 
 # 2.2.12
