@@ -2,6 +2,7 @@
 
 - update tzdata apk package to v2026d-r0 (#167)
 - update ca-certificates apk package to v20260909 (#168)
+- update ghcr.io/hassio-addons/base docker tag to v21.0.6 (#164)
 
 # 2.2.12
 
