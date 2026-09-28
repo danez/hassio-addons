@@ -1,3 +1,7 @@
+# 2.2.14
+
+- update ca-certificates apk package to v20260909 (#168)
+
 # 2.2.13
 
 - update tzdata apk package to v2026d-r0 (#167)
