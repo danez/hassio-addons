@@ -1,3 +1,7 @@
+# 3.0.27
+
+- update node.js to 154ba2f (#173)
+
 # 3.0.26
 
 - update node.js to 3eb920a (#172)
