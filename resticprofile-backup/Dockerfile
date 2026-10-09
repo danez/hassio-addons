@@ -9,7 +9,7 @@ ARG RESTICPROFILE_VERSION=0.33.1
 # renovate: datasource=github-releases depName=restic packageName=restic/restic
 ARG RESTIC_VERSION=0.19.1
 # renovate: datasource=github-releases depName=rclone packageName=rclone/rclone
-ARG RCLONE_VERSION=1.75.1
+ARG RCLONE_VERSION=1.75.2
 RUN <<EOF
 set -eu
 apk add --no-cache \
