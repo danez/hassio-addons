@@ -1,3 +1,7 @@
+# 2.2.18
+
+- update yq-go apk package to v4.53.3-r2 (#179)
+
 # 2.2.17
 
 - update dependency rclone to v1.75.2 (#176)
