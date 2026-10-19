@@ -1,3 +1,7 @@
+# 2.2.19
+
+- update cifs-utils apk package to v7.5-r1 (#181)
+
 # 2.2.18
 
 - update yq-go apk package to v4.53.3-r2 (#179)
