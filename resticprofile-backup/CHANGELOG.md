@@ -1,3 +1,7 @@
+# 2.2.20
+
+- update ca-certificates apk package to v20261020 (#182)
+
 # 2.2.19
 
 - update cifs-utils apk package to v7.5-r1 (#181)
