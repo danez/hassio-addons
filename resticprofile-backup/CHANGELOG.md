@@ -1,3 +1,7 @@
+# 2.2.21
+
+- update ghcr.io/hassio-addons/base docker tag to v21.0.9 (#185)
+
 # 2.2.20
 
 - update ca-certificates apk package to v20261020 (#182)
