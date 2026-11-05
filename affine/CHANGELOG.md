@@ -1,3 +1,7 @@
+# 3.0.32
+
+- update ghcr.io/hassio-addons/debian-base docker tag to v9.5.2 (#192)
+
 # 3.0.31
 
 - update node.js to 2117f71 (#190)
