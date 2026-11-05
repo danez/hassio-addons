@@ -1,3 +1,7 @@
+# 2.2.24
+
+- update openssh-client-default apk package to v10.3_p1-r2 (#193)
+
 # 2.2.23
 
 - update tzdata apk package to v2026f-r0 (#191)
