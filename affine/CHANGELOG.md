@@ -1,3 +1,7 @@
+# 3.0.35
+
+- Update `node` from 22.23.4-trixie-slim to 26.13.0-trixie-slim (#200)
+
 # 3.0.34
 
 - Set the deployment type to self-hosted in the default configuration.
