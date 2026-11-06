@@ -18,6 +18,12 @@
       "semanticCommitType": "fix"
     },
     {
+      "matchFileNames": ["affine/Dockerfile"],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["node"],
+      "allowedVersions": "/^22\\./"
+    },
+    {
       "matchDatasources": ["apk"],
       "registryUrls": [
         "https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=aarch64"
