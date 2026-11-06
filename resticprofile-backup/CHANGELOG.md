@@ -1,3 +1,7 @@
+# 2.2.25
+
+- update dependency rclone to v1.76.0 (#196)
+
 # 2.2.24
 
 - update openssh-client-default apk package to v10.3_p1-r2 (#193)
