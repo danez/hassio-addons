@@ -1,3 +1,7 @@
+# 3.0.34
+
+- Set the deployment type to self-hosted in the default configuration.
+
 # 3.0.33
 
 - update node.js to be1e2a3 (#194)
