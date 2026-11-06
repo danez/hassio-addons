@@ -1,6 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "gitIgnoredAuthors": ["120286224+danez-bot@users.noreply.github.com"],
+  "timezone": "Europe/Berlin",
+  "platformAutomerge": false,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
+  "rebaseWhen": "behind-base-branch",
   "extends": [
     "config:recommended",
     "docker:pinDigests",
@@ -13,16 +18,36 @@
       "semanticCommitType": "fix"
     },
     {
-      "matchDepNames": ["libpq", "postgresql**"],
-      "groupName": "postgresql"
-    },
-    {
       "matchDatasources": ["apk"],
-      "groupName": "apk",
-      "separateMajorMinor": false,
       "registryUrls": [
         "https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=aarch64"
       ]
+    },
+    {
+      "matchFileNames": ["affine/**"],
+      "groupName": "affine dependencies",
+      "groupSlug": "affine",
+      "groupSingleUpdates": true,
+      "separateMajorMinor": false,
+      "prBodyColumns": ["Package", "Update", "Change"],
+      "schedule": ["* 0-5 * * *"]
+    },
+    {
+      "matchFileNames": ["resticprofile-backup/**"],
+      "groupName": "resticprofile-backup dependencies",
+      "groupSlug": "resticprofile-backup",
+      "groupSingleUpdates": true,
+      "separateMajorMinor": false,
+      "prBodyColumns": ["Package", "Update", "Change"],
+      "schedule": ["* 0-5 * * *"]
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest", "pinDigest"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
     }
   ],
   "customManagers": [

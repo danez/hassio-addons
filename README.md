@@ -23,5 +23,7 @@ _Run AFFiNE as Home Assistant App._
 
 _Allows resticprofile configs for custom backups._
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for dependency updates, releases, and local checks.
+
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg

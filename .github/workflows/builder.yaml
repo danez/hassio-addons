@@ -1,8 +1,5 @@
 name: Builder
 
-env:
-  MONITORED_FILES: "config.json config.yaml config.yml Dockerfile rootfs"
-
 on:
   pull_request:
     branches:
@@ -20,47 +17,23 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.filter.outputs.changed }}
-      changed_apps: ${{ steps.filter.outputs.changed_apps }}
+      matrix: ${{ steps.filter.outputs.matrix }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-
-      - name: Get changed files
-        id: changed_files
-        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
-
-      - name: Find app directories
-        id: apps
-        uses: home-assistant/actions/helpers/find-addons@86d4564712fa02543c808e3a693dd04f9d3f8361 # master
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Filter changed apps
         id: filter
         env:
-          APPS: ${{ steps.apps.outputs.addons }}
-          CHANGED_FILES: ${{ steps.changed_files.outputs.all_changed_files }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
-          changed_apps=()
-
-          # If the workflow file itself changed, rebuild all apps
-          if [[ "${CHANGED_FILES}" =~ \.github/workflows/(builder|build-app)\.yaml ]]; then
-            changed_apps=(${APPS})
-          else
-            for app in ${APPS}; do
-              for file in ${MONITORED_FILES}; do
-                if [[ "${CHANGED_FILES}" =~ ${app}/${file} ]]; then
-                  changed_apps+=("${app}")
-                  break
-                fi
-              done
-            done
-          fi
-
-          if [[ ${#changed_apps[@]} -gt 0 ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "changed_apps=$(jq -nc '$ARGS.positional' --args "${changed_apps[@]}")" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          fi
+          set -euo pipefail
+          matrix="$(python3 .github/scripts/build_matrix.py --base "$BASE_SHA" --event "$GITHUB_EVENT_NAME")"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          echo "changed=$(jq 'length > 0' <<< "$matrix")" >> "$GITHUB_OUTPUT"
 
   build-app:
     name: Build ${{ matrix.app }}
@@ -73,9 +46,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: ${{ fromJSON(needs.init.outputs.changed_apps) }}
+        include: ${{ fromJSON(needs.init.outputs.matrix) }}
+    concurrency:
+      group: build-${{ matrix.app }}-${{ matrix.publish && 'publish' || github.ref }}
+      cancel-in-progress: false
     uses: ./.github/workflows/build-app.yaml
     with:
       app: ${{ matrix.app }}
-      publish: ${{ github.event_name == 'push' }}
+      publish: ${{ matrix.publish }}
     secrets: inherit
+
+  check:
+    name: Build checks
+    if: always()
+    needs: [init, build-app]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check build results
+        env:
+          INIT_RESULT: ${{ needs.init.result }}
+          BUILD_RESULT: ${{ needs.build-app.result }}
+        run: |
+          test "$INIT_RESULT" = success
+          test "$BUILD_RESULT" = success || test "$BUILD_RESULT" = skipped
