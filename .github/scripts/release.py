@@ -53,7 +53,7 @@ def dependency_entries(body):
 
 
 def changed_addons(base):
-    paths = git("diff", "--name-only", "-z", f"{base}...HEAD").split("\0")
+    paths = git("diff", "--no-renames", "--name-only", "-z", f"{base}...HEAD").split("\0")
     return sorted(
         {path.split("/")[0] for path in paths if "/" in path}
         & {path.parent.name for path in Path(".").glob("*/config.yaml")}

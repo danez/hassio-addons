@@ -2,9 +2,10 @@
 
 Renovate maintains one dependency update PR per add-on. Each group includes its
 Docker images, pinned APK packages, and annotated `_VERSION` dependencies.
-New update branches are created during 00:00–06:00 Europe/Berlin; existing PRs can
-still be refreshed outside that window. This batches available updates, but does
-not guarantee exactly one release each day.
+New add-on update branches are created during 00:00–06:00 Europe/Berlin; existing
+PRs can still be refreshed outside that window. Tooling update branches can be
+created at any time. This batches available add-on updates, but does not guarantee
+exactly one release each day.
 
 Minor, patch, pin, and digest updates can merge automatically after CI succeeds.
 If any dependency in a group has a major update, the entire PR needs manual
@@ -20,6 +21,8 @@ values, and adds one version section to the add-on's changelog. The table column
 are configured in `renovate.json`; a missing or malformed table fails the check.
 Released history comes from the base branch. The pending section is generated;
 put handwritten release notes in a separate, manually maintained PR.
+The changelog must already exist in both the base revision and the working tree;
+generation fails if either is missing.
 
 Dependency updates get an add-on patch bump. A `feat:` PR gets a minor bump, as
 before. A dependency major update requires review but does not automatically
@@ -38,8 +41,11 @@ the script does not independently verify them against the Dockerfile.
 
 The builder validates changed add-ons on PRs and pushes. It publishes versioned
 images and `latest` only on a push where that add-on's `config.yaml` version
-changed. Workflow-only changes validate all add-ons without overwriting released
-images. Publication jobs are serialized per add-on, separately from validation.
+changed. Changes to `.github/workflows/builder.yaml`,
+`.github/workflows/build-app.yaml`, `.github/scripts/build_matrix.py`, or
+`.github/scripts/release.py` validate all add-ons. If only these files change,
+the builder does not publish images. Publication jobs are serialized per add-on,
+separately from validation, with up to 100 pending jobs queued.
 
 ## GitHub configuration
 

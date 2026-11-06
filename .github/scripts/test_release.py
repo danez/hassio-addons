@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 from build_matrix import build_matrix
-from release import dependency_entries, git, release_files, version
+from release import changed_addons, dependency_entries, git, release_files, version
 
 
 SCRIPTS = Path(__file__).resolve().parent
@@ -154,6 +154,30 @@ class RepositoryTests(unittest.TestCase):
         self.assertIn("cifs-utils", updates["backup/CHANGELOG.md"])
         self.assertNotIn("other/config.yaml", updates)
 
+    def test_missing_base_changelog_fails_without_writing(self):
+        git("rm", "backup/CHANGELOG.md")
+        self.commit()
+        self.base = git("rev-parse", "HEAD").strip()
+        self.change()
+        config = Path("backup/config.yaml").read_text()
+        check = self.cli("--check")
+        self.assertNotEqual(check.returncode, 0)
+        self.assertFalse(Path("backup/CHANGELOG.md").exists())
+        result = self.cli()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(Path("backup/CHANGELOG.md").exists())
+        self.assertEqual(Path("backup/config.yaml").read_text(), config)
+
+    def test_missing_working_changelog_fails_without_writing(self):
+        self.change()
+        Path("backup/CHANGELOG.md").unlink()
+        config = Path("backup/config.yaml").read_text()
+        self.assertNotEqual(self.cli("--check").returncode, 0)
+        result = self.cli()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertFalse(Path("backup/CHANGELOG.md").exists())
+        self.assertEqual(Path("backup/config.yaml").read_text(), config)
+
     def test_bot_event_is_idempotent_but_check_still_verifies(self):
         self.change()
         self.generate()
@@ -297,6 +321,43 @@ class RepositoryTests(unittest.TestCase):
         self.assertEqual(build_matrix(self.base, "push"), [
             {"app": "backup", "publish": False}, {"app": "other", "publish": False},
         ])
+
+    def test_rootfs_move_out_of_addon_still_selects_source(self):
+        Path("backup/rootfs").mkdir()
+        Path("backup/rootfs/start.sh").write_text("echo example\n")
+        self.commit()
+        self.base = git("rev-parse", "HEAD").strip()
+        Path("docs").mkdir()
+        git("mv", "backup/rootfs/start.sh", "docs/start.sh")
+        self.commit()
+        self.assertEqual(build_matrix(self.base, "pull_request"), [
+            {"app": "backup", "publish": False},
+        ])
+        self.assertEqual(changed_addons(self.base), ["backup"])
+
+    def test_rootfs_move_between_addons_selects_both(self):
+        Path("backup/rootfs").mkdir()
+        Path("backup/rootfs/start.sh").write_text("echo example\n")
+        self.commit()
+        self.base = git("rev-parse", "HEAD").strip()
+        Path("other/rootfs").mkdir()
+        git("mv", "backup/rootfs/start.sh", "other/rootfs/start.sh")
+        self.commit()
+        self.assertEqual(build_matrix(self.base, "pull_request"), [
+            {"app": "backup", "publish": False}, {"app": "other", "publish": False},
+        ])
+        self.assertEqual(changed_addons(self.base), ["backup", "other"])
+
+    def test_docker_ignore_additions_and_edits_trigger_builds(self):
+        for name in (".dockerignore", "Dockerfile.dockerignore"):
+            for content in ("rootfs\n", "rootfs/start.sh\n"):
+                with self.subTest(name=name, content=content):
+                    self.base = git("rev-parse", "HEAD").strip()
+                    Path("backup", name).write_text(content)
+                    self.commit()
+                    self.assertEqual(build_matrix(self.base, "push"), [
+                        {"app": "backup", "publish": False},
+                    ])
 
     def test_new_addon_is_published(self):
         Path("new").mkdir()

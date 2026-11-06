@@ -49,6 +49,7 @@ jobs:
         include: ${{ fromJSON(needs.init.outputs.matrix) }}
     concurrency:
       group: build-${{ matrix.app }}-${{ matrix.publish && 'publish' || github.ref }}
+      queue: max
       cancel-in-progress: false
     uses: ./.github/workflows/build-app.yaml
     with:

@@ -27,7 +27,11 @@ jobs:
         run: python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v
 
       - name: Verify Renovate release metadata
-        if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'renovate/')
+        if: >-
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.user.login == 'renovate[bot]' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          startsWith(github.head_ref, 'renovate/')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}

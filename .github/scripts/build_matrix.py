@@ -8,7 +8,7 @@ from release import git, version
 
 
 def build_matrix(base, event):
-    changed = git("diff", "--name-only", "-z", base, "HEAD").split("\0")
+    changed = git("diff", "--no-renames", "--name-only", "-z", base, "HEAD").split("\0")
     rebuild_all = any(
         path in changed
         for path in (
@@ -21,7 +21,13 @@ def build_matrix(base, event):
     matrix = []
     for config in sorted(Path(".").glob("*/config.yaml")):
         addon = config.parent.name
-        monitored = (f"{addon}/config.yaml", f"{addon}/Dockerfile", f"{addon}/build.yaml")
+        monitored = (
+            f"{addon}/config.yaml",
+            f"{addon}/Dockerfile",
+            f"{addon}/build.yaml",
+            f"{addon}/.dockerignore",
+            f"{addon}/Dockerfile.dockerignore",
+        )
         if not rebuild_all and not any(
             path in monitored or path.startswith(f"{addon}/rootfs/") for path in changed
         ):
