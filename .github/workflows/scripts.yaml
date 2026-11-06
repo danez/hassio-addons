@@ -1,0 +1,40 @@
+name: Release scripts
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  check:
+    name: Release checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+
+      - name: Test release scripts
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v
+
+      - name: Verify Renovate release metadata
+        if: >-
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.user.login == 'renovate[bot]' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          startsWith(github.head_ref, 'renovate/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" > "$RUNNER_TEMP/renovate-pr.json"
+          python3 .github/scripts/release.py --pr-file "$RUNNER_TEMP/renovate-pr.json" --check
