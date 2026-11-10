@@ -1,3 +1,7 @@
+# 2.2.26
+
+- Update `ghcr.io/hassio-addons/base` from 21.0.10 to 21.0.11 (#201)
+
 # 2.2.25
 
 - Update `rclone` from 1.75.2 to 1.76.0 (#199)
