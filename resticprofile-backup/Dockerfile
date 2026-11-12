@@ -5,7 +5,7 @@ COPY rootfs /
 
 ARG TARGETARCH
 # renovate: datasource=github-releases depName=resticprofile packageName=creativeprojects/resticprofile
-ARG RESTICPROFILE_VERSION=0.33.1
+ARG RESTICPROFILE_VERSION=0.34.0
 # renovate: datasource=github-releases depName=restic packageName=restic/restic
 ARG RESTIC_VERSION=0.19.1
 # renovate: datasource=github-releases depName=rclone packageName=rclone/rclone
@@ -17,7 +17,7 @@ apk add --no-cache \
   cifs-utils=7.5-r1 \
   lsblk=2.42.3-r1 \
   openssh-client-default=10.3_p1-r2 \
-  postgresql18-client=18.6-r0 \
+  postgresql18-client=18.7-r0 \
   tzdata=2026f-r0 \
   yq-go=4.53.3-r2
 
