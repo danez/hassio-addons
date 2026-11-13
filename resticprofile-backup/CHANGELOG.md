@@ -1,3 +1,8 @@
+# 2.2.27
+
+- Update `postgresql18-client` from 18.6-r0 to 18.7-r0 (#203)
+- Update `resticprofile` from 0.33.1 to 0.34.0 (#203)
+
 # 2.2.26
 
 - Update `ghcr.io/hassio-addons/base` from 21.0.10 to 21.0.11 (#201)
