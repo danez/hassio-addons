@@ -1,3 +1,8 @@
+# 2.2.28
+
+- Update `restic` from 0.19.1 to 0.20.0 (#205)
+- Update `resticprofile` from 0.34.0 to 0.35.0 (#205)
+
 # 2.2.27
 
 - Update `postgresql18-client` from 18.6-r0 to 18.7-r0 (#203)
