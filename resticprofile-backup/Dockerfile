@@ -5,9 +5,9 @@ COPY rootfs /
 
 ARG TARGETARCH
 # renovate: datasource=github-releases depName=resticprofile packageName=creativeprojects/resticprofile
-ARG RESTICPROFILE_VERSION=0.34.0
+ARG RESTICPROFILE_VERSION=0.35.0
 # renovate: datasource=github-releases depName=restic packageName=restic/restic
-ARG RESTIC_VERSION=0.19.1
+ARG RESTIC_VERSION=0.20.0
 # renovate: datasource=github-releases depName=rclone packageName=rclone/rclone
 ARG RCLONE_VERSION=1.76.0
 RUN <<EOF
