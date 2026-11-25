@@ -1,3 +1,7 @@
+# 3.0.36
+
+- Update `node` from 68c76cf to f0960f8 (#207)
+
 # 3.0.35
 
 - Update `node` from 22.23.4-trixie-slim to 22.23.5-trixie-slim (#202)
