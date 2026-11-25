@@ -1,3 +1,7 @@
+# 2.2.29
+
+- Update `ghcr.io/hassio-addons/base` from 21.0.11 to 21.0.12 (#208)
+
 # 2.2.28
 
 - Update `restic` from 0.19.1 to 0.20.0 (#205)
