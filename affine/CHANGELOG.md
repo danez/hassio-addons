@@ -1,3 +1,7 @@
+# 3.0.37
+
+- Update `ghcr.io/hassio-addons/debian-base` from 9.5.2 to 9.6.0 (#210)
+
 # 3.0.36
 
 - Update `node` from 68c76cf to f0960f8 (#207)
