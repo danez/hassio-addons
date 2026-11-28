@@ -1,3 +1,7 @@
+# 2.2.30
+
+- Update `ghcr.io/hassio-addons/base` from 21.0.12 to 21.1.0 (#211)
+
 # 2.2.29
 
 - Update `ghcr.io/hassio-addons/base` from 21.0.11 to 21.0.12 (#208)
